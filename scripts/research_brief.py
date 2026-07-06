@@ -105,9 +105,12 @@ def extract_discord_highlights(brief: str, brief_path: Path) -> str:
     rest = brief[match.end() :].strip()
     next_heading = re.search(r"^#{2,3}\s+", rest, flags=re.MULTILINE)
     message = rest[: next_heading.start()].strip() if next_heading else rest
+    brief_url = brief_path
+    if os.environ.get("BRIEF_BASE_URL"):
+        brief_url = f"{os.environ['BRIEF_BASE_URL'].rstrip('/')}/{brief_path.relative_to(ROOT)}"
     message = message.replace(
         "Full brief: <link inserted by workflow>",
-        f"Full brief: {brief_path}",
+        f"Full brief: {brief_url}",
     )
 
     if len(message) <= DISCORD_LIMIT:

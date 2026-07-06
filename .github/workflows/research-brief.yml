@@ -8,6 +8,8 @@ on:
         required: true
         default: false
         type: boolean
+  schedule:
+    - cron: "0 12 * * 1-5"
 
 permissions:
   contents: write
@@ -27,16 +29,18 @@ jobs:
           python-version: "3.13"
 
       - name: Generate brief without Discord
-        if: ${{ !inputs.send_discord }}
+        if: ${{ github.event_name == 'workflow_dispatch' && !inputs.send_discord }}
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          BRIEF_BASE_URL: https://github.com/${{ github.repository }}/blob/${{ github.ref_name }}
         run: python3 scripts/research_brief.py --no-discord
 
       - name: Generate brief with Discord
-        if: ${{ inputs.send_discord }}
+        if: ${{ github.event_name == 'schedule' || inputs.send_discord }}
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          BRIEF_BASE_URL: https://github.com/${{ github.repository }}/blob/${{ github.ref_name }}
         run: python3 scripts/research_brief.py
 
       - name: Commit generated artifacts

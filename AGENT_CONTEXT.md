@@ -6,6 +6,11 @@ Build a recurring research-brief workflow for monitoring selected topics while
 preserving the user's preferred process and accepting less polish where that
 keeps the work moving.
 
+Current prototype direction: quick/dirty recurring research briefs with durable
+repo history and Discord webhook delivery. Discord should receive a highlights
+message with a link to the full generated Markdown brief, not the full brief
+body.
+
 ## Project Direction
 
 The project is intentionally early and lightweight. The working direction is to
@@ -23,6 +28,14 @@ support recurring topic monitoring and research synthesis in a way that favors:
 - No application code, scripts, brief templates, source lists, or automation
   workflow has been added yet.
 - `AGENTS.md` defines collaboration rules for future agent work.
+- `failed_openai_scheduled_task.md` contains the prior ChatGPT scheduled-task
+  prompt. It produced repeated items because it had no durable history or hard
+  duplicate-suppression mechanism.
+- `prompts/research_brief.md` contains the first production prompt contract. It
+  keeps the original topic scope, adds stronger duplicate/staleness rules,
+  treats Venue Watch as a broad awareness layer, includes Discord highlights,
+  and asks for a `delivered_items_jsonl` memory block for concrete items that
+  should not be repeated.
 - This file is the durable project context for future sessions.
 
 ## Decisions
@@ -32,18 +45,32 @@ support recurring topic monitoring and research synthesis in a way that favors:
   `AGENT_CONTEXT.md`.
 - Do not invent a detailed brief format, topic list, source policy, or
   automation stack before the project direction is clearer.
+- Prototype delivery should use Discord first because it has lower setup
+  friction than email.
+- Email may be revisited later if the Discord prototype proves useful.
+- Store only items that actually made the delivered brief in history.
+- Use normalized title plus authors as the main duplicate key, with URL as
+  supporting evidence, so preprint and publication-stage repeats can be
+  suppressed.
+- Keep "Top 5 Papers" as a strict section; the user prefers skimming over
+  over-filtering.
 
 ## Blockers
 
 - No blockers recorded.
+- Email provider choice is deferred. Discord webhook delivery is the near-term
+  path.
 
 ## Next Actions
 
-- Define the recurring brief's first topic or topic set.
-- Decide the first output format: Markdown note, digest, issue-style brief,
-  email-style brief, or another lightweight artifact.
-- Decide whether research will be manual, scripted, or partly automated.
-- Identify initial sources and freshness expectations for the first topic.
+- Define the minimal artifact structure:
+  - `briefs/YYYY-MM-DD.md` for full generated briefs.
+  - `history/items.jsonl` for delivered item history.
+- Do one manual dry run with `prompts/research_brief.md` before adding
+  automation.
+- After the prompt and history format work manually, add a GitHub Action that
+  runs on a schedule, commits artifacts/history, and posts Discord highlights
+  using `DISCORD_WEBHOOK_URL`.
 
 ## Ideas to Revisit
 
@@ -52,3 +79,4 @@ support recurring topic monitoring and research synthesis in a way that favors:
 - A lightweight run log for each brief cycle.
 - Scripted source collection or summarization once the manual workflow is clear.
 - Optional automation for scheduled brief generation.
+- Email delivery after Discord proves the brief is worth receiving regularly.

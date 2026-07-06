@@ -1,4 +1,4 @@
-# recurring-research-brief
+# Recurring research brief 🔁📜🔍🔁
 
 A quick-and-dirty recurring research brief workflow.
 

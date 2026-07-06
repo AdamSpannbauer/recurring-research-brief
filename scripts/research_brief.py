@@ -127,7 +127,10 @@ def post_discord(message: str) -> None:
     request = urllib.request.Request(
         webhook_url,
         data=json.dumps({"content": message}).encode("utf-8"),
-        headers={"Content-Type": "application/json"},
+        headers={
+            "Content-Type": "application/json",
+            "User-Agent": "recurring-research-brief/0.1",
+        },
         method="POST",
     )
 

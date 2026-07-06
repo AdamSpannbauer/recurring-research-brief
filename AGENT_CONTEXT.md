@@ -6,10 +6,9 @@ Build a recurring research-brief workflow for monitoring selected topics while
 preserving the user's preferred process and accepting less polish where that
 keeps the work moving.
 
-Current prototype direction: quick/dirty recurring research briefs with durable
-repo history and Discord webhook delivery. Discord should receive a highlights
-message with a link to the full generated Markdown brief, not the full brief
-body.
+Current state: working quick/dirty recurring research briefs with durable repo
+history and Discord webhook delivery. Discord receives a highlights message with
+a link to the full generated Markdown brief, not the full brief body.
 
 ## Project Direction
 
@@ -49,6 +48,8 @@ support recurring topic monitoring and research synthesis in a way that favors:
 - Discord delivery works after adding a `User-Agent` header to webhook requests.
 - Discord full-brief links use `BRIEF_BASE_URL` in the workflow to produce
   clickable GitHub blob URLs instead of local file paths.
+- The repository was made public so Discord-opened GitHub brief links are
+  easier to access without login friction.
 - This file is the durable project context for future sessions.
 
 ## Decisions
@@ -69,6 +70,8 @@ support recurring topic monitoring and research synthesis in a way that favors:
   over-filtering.
 - The workflow is scheduled Monday-Friday at `0 12 * * 1-5`, which is about
   8 AM Eastern during daylight time and 7 AM Eastern during standard time.
+- The project is now in monitor-and-adjust mode: modify prompts/workflow when
+  output quality needs tuning or failures appear.
 
 ## Blockers
 
@@ -80,12 +83,11 @@ support recurring topic monitoring and research synthesis in a way that favors:
 
 ## Next Actions
 
-- If desired, clear/reset `history/items.jsonl` to remove test-run suppression
-  history before the production baseline run.
-- Run one final manual workflow with Discord enabled to seed real history from a
-  clean baseline.
-- Monitor the first scheduled weekday run and confirm it posts Discord
-  highlights, commits artifacts/history, and avoids repeats.
+- Monitor scheduled weekday runs and confirm they continue posting Discord
+  highlights, committing artifacts/history, and avoiding repeats.
+- Adjust `prompts/research_brief.md` if the output gets stale, noisy, or misses
+  desired topic/venue coverage.
+- Fix workflow/script failures if they appear.
 
 ## Ideas to Revisit
 

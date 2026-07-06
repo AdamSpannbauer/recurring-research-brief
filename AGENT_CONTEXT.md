@@ -25,8 +25,11 @@ support recurring topic monitoring and research synthesis in a way that favors:
 
 - `README.md` is currently sparse and states the initial intent:
   "monitor some topics and sacrifice some polish for doing it how I want it."
-- No application code, scripts, brief templates, source lists, or automation
-  workflow has been added yet.
+- `scripts/research_brief.py` is the first simple stdlib-only runner. It reads
+  `.env`, calls the OpenAI Responses API with hosted web search, writes brief
+  artifacts, appends delivered-item memory to `history/items.jsonl`, and can
+  post Discord highlights when `DISCORD_WEBHOOK_URL` is set.
+- No source lists or GitHub Actions workflow has been added yet.
 - `AGENTS.md` defines collaboration rules for future agent work.
 - `failed_openai_scheduled_task.md` contains the prior ChatGPT scheduled-task
   prompt. It produced repeated items because it had no durable history or hard
@@ -36,6 +39,8 @@ support recurring topic monitoring and research synthesis in a way that favors:
   treats Venue Watch as a broad awareness layer, includes Discord highlights,
   and asks for a `delivered_items_jsonl` memory block for concrete items that
   should not be repeated.
+- Local API runs succeeded. A rerun using existing `history/items.jsonl`
+  appeared to use history correctly and avoid repeating prior delivered items.
 - This file is the durable project context for future sessions.
 
 ## Decisions
@@ -60,17 +65,27 @@ support recurring topic monitoring and research synthesis in a way that favors:
 - No blockers recorded.
 - Email provider choice is deferred. Discord webhook delivery is the near-term
   path.
+- GitHub Action runtime may need an explicit longer timeout because local API
+  runs are slow.
 
 ## Next Actions
 
-- Define the minimal artifact structure:
-  - `briefs/YYYY-MM-DD.md` for full generated briefs.
-  - `history/items.jsonl` for delivered item history.
-- Do one manual dry run with `prompts/research_brief.md` before adding
-  automation.
-- After the prompt and history format work manually, add a GitHub Action that
-  runs on a schedule, commits artifacts/history, and posts Discord highlights
-  using `DISCORD_WEBHOOK_URL`.
+- Add a temporary/manual GitHub Action test workflow using `workflow_dispatch`,
+  not a schedule yet.
+- Configure the Action to use the `OPENAI_API_KEY` secret and run
+  `python3 scripts/research_brief.py --no-discord`.
+- Give the workflow `permissions: contents: write` so it can commit generated
+  brief artifacts and `history/items.jsonl` back to the branch.
+- Set an explicit long job timeout, likely 45-60 minutes, because the API/web
+  search run is not fast.
+- First Action test: run without committed local history and confirm it creates
+  a brief plus `history/items.jsonl`.
+- Second Action test: rerun after the first Action commit and verify the
+  committed history suppresses repeats.
+- For now, accept same-date artifact overwrites and use git history to compare
+  first and second Action outputs.
+- After Action history behavior is proven, wire Discord delivery with
+  `DISCORD_WEBHOOK_URL`, then consider scheduling.
 
 ## Ideas to Revisit
 

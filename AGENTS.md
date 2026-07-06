@@ -7,7 +7,11 @@
 - Before editing, state the exact files you intend to create or modify and the specific nature of the changes.
 - Ask for explicit approval to proceed and wait for the user to approve.
 - Approval applies only to the agreed plan; do not expand the scope after approval.
-- Clear confirmations such as "go", "approved", "yes edit", or "make the change" count as approval.
+- Treat discussion, agreement with an approach, preference statements, critique, or implementation guidance as planning only unless the user explicitly approves editing.
+- If the user says what they want changed but does not clearly say to edit files, respond with the exact proposed file changes and ask for approval.
+- Phrases like "I like that", "that sounds good", "yes that's the right idea", "next we should", or "I want X" do not count as edit approval by themselves.
+- When in doubt, ask: "Do you approve editing the listed files now?"
+- Clear confirmations such as "go", "approved", "yes edit", "make the change", or "edit the listed files" count as approval only after a concrete file/change plan has been stated.
 
 ## Think Before Coding
 

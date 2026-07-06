@@ -46,6 +46,14 @@
 
 ## Session Startup
 
+The remote repository may change between sessions. At session startup, check
+the current branch and worktree status, then pull/rebase from the tracked
+remote before planning edits.
+
+If the worktree has local changes, do not pull blindly. Report the dirty state
+and ask how to proceed before any operation that could merge, rebase, or
+otherwise interact with local changes.
+
 At the start of each session, read `README.md` and `AGENT_CONTEXT.md` if present.
 Use them to recover:
 

@@ -96,22 +96,41 @@ def call_openai(model_input: str, model: str) -> str:
     return extract_output_text(data)
 
 
+def brief_link(brief_path: Path) -> str:
+    base_url = os.environ.get("BRIEF_BASE_URL")
+    if base_url:
+        return f"{base_url.rstrip('/')}/{brief_path.relative_to(ROOT)}"
+    return str(brief_path)
+
+
+def ensure_brief_link(message: str, link: str) -> str:
+    if link in message:
+        return message
+    return f"{message.rstrip()}\n\nFull brief: {link}"
+
+
 def extract_discord_highlights(brief: str, brief_path: Path) -> str:
-    heading = r"^#{2,3}\s+Section 5:\s+Discord Highlights\s*$"
+    link = brief_link(brief_path)
+    heading = r"^#{2,3}\s+(?:Section\s+)?5:\s+Discord Highlights\s*$"
     match = re.search(heading, brief, flags=re.MULTILINE)
     if not match:
-        return f"Research brief generated: {brief_path}"
+        return ensure_brief_link("Research brief generated.", link)
 
     rest = brief[match.end() :].strip()
     next_heading = re.search(r"^#{2,3}\s+", rest, flags=re.MULTILINE)
     message = rest[: next_heading.start()].strip() if next_heading else rest
-    brief_url = brief_path
-    if os.environ.get("BRIEF_BASE_URL"):
-        brief_url = f"{os.environ['BRIEF_BASE_URL'].rstrip('/')}/{brief_path.relative_to(ROOT)}"
+    memory_block = message.find("```delivered_items_jsonl")
+    if memory_block != -1:
+        message = message[:memory_block].strip()
     message = message.replace(
         "Full brief: <link inserted by workflow>",
-        f"Full brief: {brief_url}",
+        f"Full brief: {link}",
     )
+    message = message.replace(
+        "Full brief: `<link inserted by workflow>`",
+        f"Full brief: {link}",
+    )
+    message = ensure_brief_link(message, link)
 
     if len(message) <= DISCORD_LIMIT:
         return message

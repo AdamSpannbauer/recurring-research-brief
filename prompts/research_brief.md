@@ -58,7 +58,19 @@ accepted-paper batch, award, or announcement once it has been covered.
 
 Write the human-readable brief in Markdown.
 
-### Section 1: Top 5 Papers
+Use these section headings exactly:
+
+```markdown
+## Section 1: Top 5 Papers
+## Section 2: Venue Watch
+## Section 3: Emerging Trends
+## Section 4: Worth Watching
+## Section 5: Discord Highlights
+```
+
+Do not rename, renumber, abbreviate, or reformat these headings.
+
+## Section 1: Top 5 Papers
 
 Select the five most interesting papers published, released, or gaining
 significant attention within roughly the last month, after applying duplicate
@@ -82,7 +94,7 @@ Prefer papers with genuinely new ideas over incremental benchmark improvements.
 Among similar papers, favor those most likely to shape future research rather
 than those with the best reported metrics.
 
-### Section 2: Venue Watch
+## Section 2: Venue Watch
 
 Use this section to maintain awareness of what selected research communities
 are publishing, not only to filter for Adam's current interests. Monitor new
@@ -112,7 +124,7 @@ Do not let Venue Watch become a feedback loop around the primary interests. Its
 job is to expose adjacent and shifting research-community activity that may
 change future topic priorities.
 
-### Section 3: Emerging Trends
+## Section 3: Emerging Trends
 
 In 3-6 bullets, summarize recurring themes across recent publications and venue
 activity, such as synthetic pretraining, new benchmarks, evaluation standards,
@@ -121,7 +133,7 @@ interpretability, causal ML, or unexpected shifts in watched venues.
 
 Emphasize synthesis and judgment. Do not merely restate paper titles.
 
-### Section 4: Worth Watching
+## Section 4: Worth Watching
 
 Briefly mention promising new arXiv papers, datasets, benchmark competitions,
 open-source repositories, software libraries, reproducibility resources, or
@@ -130,7 +142,7 @@ community artifacts likely to become influential.
 Include only items that are specific enough to be useful and worth suppressing
 from future repeat briefings if they appear again.
 
-### Section 5: Discord Highlights
+## Section 5: Discord Highlights
 
 Provide a short Discord-ready highlights message. It should include:
 
@@ -138,6 +150,9 @@ Provide a short Discord-ready highlights message. It should include:
 - the five Top 5 paper titles
 - one short highlight line for each paper
 - a placeholder line: `Full brief: <link inserted by workflow>`
+
+Write the placeholder line exactly as `Full brief: <link inserted by workflow>`.
+Do not wrap the placeholder in backticks.
 
 Keep this compact. The Discord message is a pointer to the full Markdown brief,
 not a replacement for it.

@@ -1,0 +1,102 @@
+## Section 1: Top 5 Papers
+
+1. **Nonparametric Partial Disentanglement via Mechanism Sparsity: Sparse Actions, Interventions and Sparse Temporal Dependencies**  
+   **Authors:** Sébastien Lachapelle, Pau Rodríguez López, Yash Sharma, Katie Everett, Rémi Le Priol, Alexandre Lacoste, Simon Lacoste-Julien  
+   **Venue/source:** JMLR 27(71), 2026  
+   **Publication/release date:** 2026; newly visible in the JMLR Volume 27 stream  
+   **Link:** ([jmlr.org](https://www.jmlr.org/papers/v27/24-0771.html))  
+   This is the most conceptually important item this week for representation learning. It gives a nonparametric identifiability story for disentanglement via **mechanism sparsity**: latent factors can be partially or completely identified when their dependencies on interventions, actions, or temporal parents are sparse. The paper introduces “consistency” as a weaker equivalence relation than full permutation/componentwise recovery, plus entanglement graphs and graph-preserving functions to characterize residual ambiguity. The estimation proposal uses VAEs with a sparse causal graph constraint, but the deeper value is the bridge between causal representation learning, temporal structure, and identifiability.  
+   **Why you should care:** It sharpens the conditions under which “causal representations” are more than an aspirational slogan.
+
+2. **Causal Inference for Sequential Settings under Interference and Latent Confounding**  
+   **Authors:** Phevos Paschalidis, Constantinos Daskalakis, Devavrat Shah  
+   **Venue/source:** arXiv  
+   **Publication/release date:** July 16, 2026  
+   **Link:** ([arxiv.org](https://arxiv.org/abs/2607.14940))  
+   This paper attacks a high-value causal problem: estimating causal effects in sequential observational panels when units interfere with each other and latent confounders are present. Outcomes evolve Markovianly over time; cross-unit dependence is modeled with an Ising structure, while treatment and latent factors enter through an external field with low-rank structure. The authors propose a computationally efficient maximum pseudo-likelihood estimator, prove non-asymptotic consistency, and use learned-model sampling to estimate causal quantities. The motivating application—county-level vaccine rates and COVID-19 deaths—is messy, but the modeling template is broadly relevant to markets, platforms, epidemics, and networks.  
+   **Why you should care:** It is a serious attempt to unify panel-style latent confounding, interference, and sequential causal estimation.
+
+3. **Evaluating Epistemic Uncertainty: Beyond OOD Detection and Active Learning**  
+   **Authors:** Jakub Paplhám, Willem Waegeman, Eyke Hüllermeier, Vojtěch Franc  
+   **Venue/source:** arXiv  
+   **Publication/release date:** July 16, 2026  
+   **Link:** ([arxiv.org](https://arxiv.org/abs/2607.14817))  
+   The paper argues that common evaluations of epistemic uncertainty—OOD detection and active learning—do not actually test what many papers claim they test. Using an epistemic reject-option framing, it evaluates epistemic uncertainty by whether it identifies **regret**, i.e., reducible error. The core theoretical result formulates selective prediction over coverage, risk, and regret and shows that the optimal selector thresholds a convex combination of ground-truth aleatoric and epistemic uncertainty. Empirically, decision-theoretic rankings diverge from proxy-task rankings, including rank inversions.  
+   **Why you should care:** It offers a better evaluation target for uncertainty methods than “does my score correlate with a decomposition label?”
+
+4. **Sharp Stability Threshold and Certification for Designing Stable Residual Architectures**  
+   **Authors:** Hyemin Gu, Michael Tyrrell, Tuhin Sahai, Markos A. Katsoulakis  
+   **Venue/source:** arXiv  
+   **Publication/release date:** July 16, 2026  
+   **Link:** ([arxiv.org](https://arxiv.org/abs/2607.14576))  
+   This theory paper proposes a simple architectural stability criterion for residual networks: every residual block’s velocity field should grow at most linearly in input magnitude, with exponent \(q \le 1\). The authors justify the threshold through ODE existence arguments and an optimal-control/HJB analysis, then give an arithmetic of exponents for certifying composite blocks from primitives. The practical punchline is useful: normalization is not the essence of stability; the input-growth exponent is. They demonstrate a parameter-free modification that reduces a supercritical Mamba block from \(q=5\) to \(q=1\), with stable Mamba and PatchTST experiments.  
+   **Why you should care:** It turns residual-architecture stability from folklore into a certifiable design rule.
+
+5. **xHC: Expanded Hyper-Connections**  
+   **Authors:** Xiangdong Zhang, Xiaohan Qin, Sunan Zou, Tuo Dai, Xiaoming Shi, Huaijin Wu, Yebin Yang, Zhuo Xia, Shaofeng Zhang, Lin Yao, Yuliang Liu, Yu Cheng, Junchi Yan  
+   **Venue/source:** arXiv technical report  
+   **Publication/release date:** July 16, 2026  
+   **Link:** ([arxiv.org](https://arxiv.org/abs/2607.14530))  
+   Hyper-Connections expand the Transformer residual stream into multiple parallel streams, making “residual-stream multiplicity” a scaling axis distinct from width and depth. This report studies why earlier HC methods stalled around \(N=4\): insufficient write-back signal and cubic residual-mixing cost. xHC uses temporal feature augmentation plus sparse residual-stream updates, updating only \(k=4\) of \(N=16\) streams while retaining dense access to the full residual state. The authors report downstream gains on 18B and 28B MoE models, scaling-law wins, and xHC-Flash to reduce memory traffic.  
+   **Why you should care:** If the result holds up, residual-stream expansion may become a real architectural knob for large foundation models.
+
+## Section 2: Venue Watch
+
+- **JMLR Volume 27 latest stream, new tail after the July 15 snapshot.** The newly visible cluster around papers 71–98 is unusually aligned with Adam’s interests: causal/disentangled representation learning, data corruption taxonomies, differentially private bandits and high-dimensional regression, graph message passing limits, transfer conformal inference, cheap bootstrap UQ for SGD, conditional independence testing, heterogeneous-data kernel embeddings, and random forest theory. The standout is Lachapelle et al. on mechanism-sparsity disentanglement, but the broader signal is that JMLR’s current tail is leaning into rigorous ML/statistical methodology rather than benchmark-driven model papers. ([jmlr.org](https://www.jmlr.org/papers/v27/))
+
+- **JRSS Series B, Volume 88 Issue 3, July 2026.** This issue is worth tracking as a statistics-community snapshot. The discussion paper is **“Augmented balancing weights as linear regression,”** surrounded by a large formal discussion, which suggests continued statistical consolidation around balancing, weighting, and causal estimation. Original articles include generalized universal inference for risk minimizers, root-cause discovery via permutations and Cholesky decompositions, robust deconfounding for time series, coloured Gaussian DAG models, self-organizing state-space models, distributed-DP transfer learning, randomization designs with interference, federated feature selection with FDR control, sparsity-heterogeneous multitask learning, and inference with Mondrian forests. ([academic.oup.com](https://academic.oup.com/jrsssb/issue))
+
+- **UAI 2026 camera-ready and proceedings pipeline.** UAI’s accepted papers are proceeding to camera-ready: final deliverables were due July 8, 2026, with accepted papers to be published in PMLR and presented at the August 17–21 Amsterdam meeting. This is not yet the proceedings release, but it is a useful marker: expect the next useful UAI scan to be the public accepted-paper/proceedings batch, especially for uncertainty, causality, graphical models, conformal/e-values, and probabilistic ML. ([auai.org](https://www.auai.org/uai2026/camera-ready_instructions?utm_source=openai))
+
+## Section 3: Emerging Trends
+
+- **Causal structure is re-entering representation learning through identifiability, not just intervention rhetoric.** The JMLR disentanglement paper and the sequential-interference causal paper both use structure—sparsity, low rank, graphical constraints—to make otherwise hopeless latent problems estimable.
+
+- **Evaluation work is becoming more decision-theoretic.** Epistemic uncertainty evaluation, A/B-test variance reduction, and offline RL balance diagnostics all push against proxy metrics and ask what operational decision the score is meant to support.
+
+- **Transformer architecture work is moving below the block level.** Recent rank/stability/residual-stream papers suggest a shift from “new block type” to mathematical control of residual dynamics, stream geometry, memory traffic, and representation propagation.
+
+- **Statistics venues are publishing highly relevant adjacent work.** JRSSB’s July issue is not “ML systems,” but balancing weights, interference, federated feature selection, DP transfer, state-space models, and Mondrian-forest inference are exactly the methods layer that structured-data ML often borrows from later.
+
+- **Benchmarks are becoming more diagnostic and less leaderboard-like.** HyperShadow and ChronoQG are narrow but well-posed tests of representational or temporal faithfulness; they fit the broader move toward benchmarks that expose a specific failure mode.
+
+## Section 4: Worth Watching
+
+- **Muse: Representation Geometry of Muon Beyond Normalized Momentum.** A timely optimizer-geometry paper showing that Muon-style polar updates depend strongly on how parameter blocks are represented before orthogonalization; the shorter matrix dimension controls singular-channel support and convergence constants. Worth suppressing now because Muon variants are likely to keep recurring in LLM-optimization discussions. ([arxiv.org](https://arxiv.org/abs/2607.14536))
+
+- **Accelerating A/B-Tests with Counterfactual Estimation.** A concise experimental-design idea: when treatment and control policies choose the same action, the observation adds variance but no treatment-effect signal. The proposed Δ-off-policy estimator makes variance scale with policy divergence rather than raw outcome noise. ([arxiv.org](https://arxiv.org/abs/2607.14604))
+
+- **HyperShadow benchmark.** A controlled benchmark for detecting whether a 3D point cloud is a native 3D object or a projection of a rigid object in 4–6 spatial dimensions; includes public code and dataset. It is niche, but unusually clean as a representation/geometry diagnostic. ([arxiv.org](https://arxiv.org/abs/2607.14419))
+
+- **ChronoQG benchmark.** A temporal knowledge-graph question-generation benchmark with 16,011 verified questions across four datasets, designed to test whether generated questions preserve temporal validity, ordering, and answer-determining constraints. ([arxiv.org](https://arxiv.org/abs/2607.14770))
+
+- **BadWAM.** A new adversarial evaluation for world-action models showing that small visual perturbations can preserve plausible imagined futures while desynchronizing executed actions—relevant to interpretability claims based on “the model imagines the right future.” ([arxiv.org](https://arxiv.org/abs/2607.15207))
+
+## Section 5: Discord Highlights
+
+**Research brief — Jul 17**
+
+Top papers:
+1. **Nonparametric Partial Disentanglement via Mechanism Sparsity** — identifiability theory for causal/disentangled representations via sparse mechanisms.
+2. **Causal Inference for Sequential Settings under Interference and Latent Confounding** — panel/network causal inference with Ising dependence and low-rank latent confounding.
+3. **Evaluating Epistemic Uncertainty: Beyond OOD Detection and Active Learning** — decision-theoretic evaluation of epistemic uncertainty via regret.
+4. **Sharp Stability Threshold and Certification for Designing Stable Residual Architectures** — certifiable \(q \le 1\) growth rule for stable residual dynamics.
+5. **xHC: Expanded Hyper-Connections** — residual-stream multiplicity as a practical scaling axis for large Transformers.
+
+Full brief: <link inserted by workflow>
+
+```delivered_items_jsonl
+{"date_delivered":"2026-07-17","type":"paper","title":"Nonparametric Partial Disentanglement via Mechanism Sparsity: Sparse Actions, Interventions and Sparse Temporal Dependencies","authors_or_org":"Sébastien Lachapelle, Pau Rodríguez López, Yash Sharma, Katie Everett, Rémi Le Priol, Alexandre Lacoste, Simon Lacoste-Julien","url":"https://www.jmlr.org/papers/v27/24-0771.html","memory":"Top 5 paper and JMLR Volume 27(71) item. Covered mechanism sparsity regularization for causal/disentangled representation learning, nonparametric identifiability up to consistency, entanglement graphs, graph-preserving functions, VAE estimator, and extension of CLeaR 2022 work. Suppress arXiv/CLeaR/JMLR/code repeats unless materially changed."}
+{"date_delivered":"2026-07-17","type":"paper","title":"Causal Inference for Sequential Settings under Interference and Latent Confounding","authors_or_org":"Phevos Paschalidis, Constantinos Daskalakis, Devavrat Shah","url":"https://arxiv.org/abs/2607.14940","memory":"Top 5 paper. Covered July 16 2026 arXiv paper on sequential causal inference with outcome interference, Ising dependencies across units, low-rank latent confounding, MPLE estimation, non-asymptotic consistency, and COVID county vaccine-rate case study. Suppress future arXiv/venue/code reposts unless materially expanded."}
+{"date_delivered":"2026-07-17","type":"paper","title":"Evaluating Epistemic Uncertainty: Beyond OOD Detection and Active Learning","authors_or_org":"Jakub Paplhám, Willem Waegeman, Eyke Hüllermeier, Vojtěch Franc","url":"https://arxiv.org/abs/2607.14817","memory":"Top 5 paper. Covered decision-theoretic evaluation of epistemic uncertainty via regret/reducible error, selective prediction coverage-risk-regret surface, and critique of proxy OOD/active-learning/correlation rankings. Suppress future versions unless evaluation framework materially changes."}
+{"date_delivered":"2026-07-17","type":"paper","title":"Sharp Stability Threshold and Certification for Designing Stable Residual Architectures","authors_or_org":"Hyemin Gu, Michael Tyrrell, Tuhin Sahai, Markos A. Katsoulakis","url":"https://arxiv.org/abs/2607.14576","memory":"Top 5 paper. Covered July 16 2026 arXiv theory paper proposing q<=1 sublinear-growth principle for residual architecture stability, ODE and HJB justification, exponent arithmetic for architectural certification, and Mamba/PatchTST experiments. Suppress future reposts unless materially changed."}
+{"date_delivered":"2026-07-17","type":"paper","title":"xHC: Expanded Hyper-Connections","authors_or_org":"Xiangdong Zhang, Xiaohan Qin, Sunan Zou, Tuo Dai, Xiaoming Shi, Huaijin Wu, Yebin Yang, Zhuo Xia, Shaofeng Zhang, Lin Yao, Yuliang Liu, Yu Cheng, Junchi Yan","url":"https://arxiv.org/abs/2607.14530","memory":"Top 5 paper. Covered July 16 2026 arXiv technical report on expanded Hyper-Connections, residual-stream multiplicity beyond N=4, sparse updates over N=16 streams, xHC-Flash memory traffic reduction, and 18B/28B MoE results. Suppress project/arXiv/social repeats unless independent results or material release appears."}
+{"date_delivered":"2026-07-17","type":"venue_issue","title":"JMLR Volume 27 latest papers stream as of July 17 2026","authors_or_org":"Journal of Machine Learning Research","url":"https://www.jmlr.org/papers/v27/","memory":"Venue Watch. Covered new visible JMLR Volume 27 tail around papers 71-98 after prior July 15 snapshot, including mechanism-sparsity disentanglement, corruptions typology, DP best-arm identification, graph scattering, multi-relational network autoregression, knowledge transfer in generative models, DP high-dimensional inference, neural collapse, transfer conformal inference, cheap bootstrap for SGD, deep conditional independence tests, heterogeneous-data kernel embeddings, and random forest theory. Suppress this broad snapshot."}
+{"date_delivered":"2026-07-17","type":"venue_issue","title":"Journal of the Royal Statistical Society Series B Volume 88 Issue 3 July 2026","authors_or_org":"Royal Statistical Society / Oxford Academic","url":"https://academic.oup.com/jrsssb/issue","memory":"Venue Watch. Covered JRSSB July 2026 issue with discussion paper Augmented balancing weights as linear regression and original articles on universal inference, root cause discovery, time-series deconfounding, coloured Gaussian DAGs, state-space models, distributed-DP transfer learning, interference designs, federated feature selection with FDR, weak identification, multitask sparsity heterogeneity, and Mondrian-forest inference. Suppress repeat issue summaries."}
+{"date_delivered":"2026-07-17","type":"announcement","title":"UAI 2026 camera-ready and PMLR proceedings pipeline","authors_or_org":"Association for Uncertainty in Artificial Intelligence","url":"https://www.auai.org/uai2026/camera-ready_instructions","memory":"Venue Watch. Covered UAI 2026 camera-ready instructions with final deliverables due July 8 2026, PMLR license/proceedings pipeline, and expectation that accepted papers will be presented at UAI 2026 Amsterdam Aug 17-21. Suppress repeat process reminder; future runs should cover public proceedings/accepted-paper batch or awards."}
+{"date_delivered":"2026-07-17","type":"paper","title":"Muse: Representation Geometry of Muon Beyond Normalized Momentum","authors_or_org":"Da Chang, Qiankun Shi, Lvgang Zhang, Di He, Yaoshuai Ma, Ganzhao Yuan, Yongxiang Liu","url":"https://arxiv.org/abs/2607.14536","memory":"Worth Watching. Covered July 16 2026 arXiv paper on representation choice in Muon-style optimizers, polar steepest-descent geometry, singular-channel support, pullback scaling, stochastic nonconvex bounds, and LLaMA2 pretraining diagnostics. Suppress future reposts unless selected for Top 5 or materially changed."}
+{"date_delivered":"2026-07-17","type":"paper","title":"Accelerating A/B-Tests with Counterfactual Estimation: Reducing Variance through Policy Overlap","authors_or_org":"Olivier Jeunen","url":"https://arxiv.org/abs/2607.14604","memory":"Worth Watching. Covered July 16 2026 arXiv paper using policy overlap and Delta-off-policy estimation to reduce A/B-test variance, with variance scaling by policy divergence. Suppress future reposts unless substantially extended."}
+{"date_delivered":"2026-07-17","type":"benchmark","title":"HyperShadow: A Benchmark for Detecting 3D Projections of Higher-Dimensional Spatial Objects","authors_or_org":"Akshay Sasi","url":"https://arxiv.org/abs/2607.14419","memory":"Worth Watching benchmark. Covered July 15 2026 arXiv benchmark for distinguishing native 3D point clouds from projections of rigid objects in 4-6 spatial dimensions, including public code/dataset, corruption tiers, and Kabsch rigidity witness. Suppress future paper/code/dataset reposts unless benchmark materially expands."}
+{"date_delivered":"2026-07-17","type":"benchmark","title":"ChronoQG: Towards a Temporally Expressive and Hop-Bounded Benchmark for Temporal Knowledge Graph Question Generation","authors_or_org":"Xuemeng Liu, Zhengpin Li, Wanpeng Tang, Haotong Xie, Wentao Zhang","url":"https://arxiv.org/abs/2607.14770","memory":"Worth Watching benchmark. Covered July 16 2026 arXiv benchmark construction framework for temporal KG question generation, 16,011 verified questions across four datasets, temporal-constraint taxonomy, topology-temporal sampling, and LLM baseline failures. Suppress future arXiv/dataset/repost mentions unless public artifact materially changes."}
+{"date_delivered":"2026-07-17","type":"paper","title":"BadWAM: When World-Action Models Dream Right but Act Wrong","authors_or_org":"Qi Li, Xingyi Yang, Xinchao Wang","url":"https://arxiv.org/abs/2607.15207","memory":"Worth Watching. Covered July 16 2026 arXiv paper introducing World-Action Drift Attacks against world-action models, including action-only and imagination-preserving perturbations that desynchronize imagined futures from executed actions. Suppress future versions unless attack/evaluation expands materially."}
+```

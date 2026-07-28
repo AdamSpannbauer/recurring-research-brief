@@ -1,0 +1,101 @@
+## Section 1: Top 5 Papers
+
+1. **Beyond Scale and Generation: Understanding Language Model-based Entity Matching**  
+   **Authors:** Zeyu Zhang, Xue Li, Iacer Calixto, Paul Groth, Sebastian Schelter  
+   **Venue/source:** arXiv cs.DB preprint  
+   **Release date:** July 27, 2026  
+   **Link:** ([arxiv.org](https://arxiv.org/abs/2607.24688))  
+   This is the strongest structured-data paper in today’s stream: a controlled factorial study of language-model entity matching across three matcher architectures, three Qwen3 variants, three model sizes, and nine datasets, totaling 1,215 fine-tuning runs. The useful contribution is not “LLMs improve ER,” but the decomposition of where gains come from. Embedding-oriented variants matter sharply for bi-encoders; cross-encoders retain a joint-encoding advantage; generative matchers help mainly under schema shift and cross-dataset transfer; and larger models can lean harder on shortcuts.  
+   **Why you should care:** It gives the ER community a much cleaner experimental map of architecture/model/scale/shift effects than the usual leaderboard comparison.
+
+2. **Logit-Coordinate Generative Models for Mixed Continuous-Categorical Tabular Data**  
+   **Authors:** Yuefei Shen, Xiaotong Shen  
+   **Venue/source:** arXiv stat.ML preprint  
+   **Release date:** July 25, 2026  
+   **Link:** ([arxiv.org](https://arxiv.org/abs/2607.23348))  
+   This paper attacks a persistent weakness in continuous generative models for tables: categorical variables live on probability simplices, while flow matching and Gaussian diffusion want Euclidean coordinates. The authors encode categorical variables as smoothed natural-parameter/logit coordinates, combine them with transformed numerical variables, and instantiate both Logit Flow Matching and Logit Diffusion. The technical value is the mixed-distribution discrepancy and stability/rate analysis connecting vector-field or drift error to decoded mixed-data error, especially under rare-cell imbalance. Empirically, logit coordinates beat or match one-hot baselines on simulations and real benchmarks.  
+   **Why you should care:** It is a principled representation-layer fix for tabular diffusion/flow models, not just another generator benchmark.
+
+3. **PerturbPFN: Probing the Limits of Synthetic Priors in Drug Perturbation Modelling**  
+   **Authors:** Yuche Gao, José Miguel Hernández-Lobato, Siyuan Guo  
+   **Venue/source:** arXiv; accepted at the 2nd ICML Workshop on Foundation Models for Structured Data  
+   **Release date:** July 26, 2026  
+   **Link:** ([arxiv.org](https://arxiv.org/abs/2607.23447))  
+   PerturbPFN extends the PFN/synthetic-prior recipe from generic tabular prediction into biological perturbation modeling. Rather than directly regressing high-dimensional gene-expression responses, the model amortizes inference over a latent system graph, sparse intervention targets, intervention strengths, and an SCM decoder. It is trained entirely on prior-predictive synthetic episodes from graph and expression simulators, then used in-context without gradient updates. The evaluation spans real single-cell perturbation data and synthetic tasks for effect prediction, target identification, and regulatory discovery. The paper matters because it shows what structured synthetic priors buy—and where they may be brittle—in a scientific domain.  
+   **Why you should care:** This is a concrete bridge between tabular/structured foundation models, causal generative simulators, and perturbational biology.
+
+4. **Sparse Autoencoders Encode Both Concepts and Functions: The Downstream Geometry of Feature Effects**  
+   **Authors:** Phu Gia Hoang, Anwoy Chatterjee, Tanmoy Chakraborty, Iryna Gurevych, Subhabrata Dutta  
+   **Venue/source:** arXiv cs.LG preprint  
+   **Release date:** July 27, 2026  
+   **Link:** ([arxiv.org](https://arxiv.org/abs/2607.24645))  
+   The paper argues that SAE features should be judged not just by activation semantics, but by the geometry of their causal effects on logits. Its Feature-Effect Geometry Analysis removes the same active SAE feature across contexts and studies the induced cloud of logit changes. The central finding is cautionary: cleanly interpretable features rarely correspond to stable one-dimensional steering directions. The authors distinguish value-like features, whose effects are more structured but still multi-directional, from pointer-like features, whose effects are diffuse and context-dependent.  
+   **Why you should care:** It pushes mechanistic interpretability from “feature naming” toward reusable causal-effect geometry, which is exactly where many SAE claims currently break.
+
+5. **Directional Influence Function: Estimating Training Data Influence in Constrained Learning**  
+   **Authors:** Xin Wang, R. Tyrrell Rockafellar, Xuegang “Jeff” Ban  
+   **Venue/source:** arXiv cs.LG preprint  
+   **Release date:** July 25, 2026  
+   **Link:** ([arxiv.org](https://arxiv.org/abs/2607.23388))  
+   Classical influence functions become unreliable when training data perturbations also reshape feasibility constraints—common in fairness-, safety-, physics-, logic-, and robustness-constrained learning. This paper formulates constrained-learning optimality as a variational inequality and derives a Directional Influence Function that respects both the objective and feasible region. On constrained linear regression it matches leave-one-out retraining where classical and penalty-based IFs are biased; on fairness-constrained CNNs it predicts test-loss changes under data removal. The broader message is that attribution methods need to be constraint-aware rather than post hoc overlays on unconstrained sensitivity analysis.  
+   **Why you should care:** Influence and data-attribution tooling will be misleading for many deployed constrained ML systems unless it handles feasibility geometry directly.
+
+## Section 2: Venue Watch
+
+- **arXiv cs.LG/stat.ML daily stream, July 28 snapshot.** The machine-learning stream is large enough to be treated as a venue in its own right today: cs.LG lists 326 entries for July 28, and stat.ML lists 49. The signal clusters are unusually aligned with Adam’s interests: entity matching, mixed tabular generation, table embeddings, SAE causal effects, context-shaped representations, constrained influence functions, temporal graph drift, synthetic-prior PFNs, Bayesian causal discovery, kernel discrepancy lower bounds, context-adaptive inference, and distribution learning from overlapping data providers. The quality distribution remains very uneven, but the structured-data/causal/representation layer is dense enough that today’s stream deserved direct scanning. ([arxiv.org](https://arxiv.org/list/cs.LG/recent?show=2000&skip=0))
+
+- **arXiv cs.DB daily stream, July 28 snapshot.** cs.DB shows 19 July 28 entries, with a notable concentration around data+LLM systems rather than classical query processing alone: language-model entity matching, table-level embeddings, relational LLM serving, ambiguity-aware Text-to-SQL evaluation, ER-diagram understanding, data-quality templates, denial-constraint discovery, filtered vector search, and adaptive time-series imputation. The best database-system item is **Kalypso**, which proposes “relational LLM serving” and reports up to 4.57× speedups by making serving aware of semantic query plans and reusing KV-cache state across pipelined semantic operators. ([arxiv.org](https://arxiv.org/list/cs.DB/recent?show=1000))
+
+- **TMLR July 2026 incremental accepted-paper activity.** Since the earlier July snapshot, the top of the TMLR accepted list has added/shifted toward optimizer theory, sparse attention, causal discovery surveys, graph/domain adaptation, pruning, neural-operator training, LLM-initialized bandits, flow-matching optimization, noisy-feedback RL, and self-supervised time-series neural operators. Notable individually: **On the Convergence Analysis of Muon** has a J2C certification; **Conditional Independence Tests for Constraint-Based Causal Discovery: A Survey** has a Survey certificate; **FedIndex** and several flow/generative items have J2C tags. This reinforces a pattern: TMLR is becoming an important slow-burn venue for optimizer theory, foundation-model systems, and survey/certification-style resources rather than only “conference overflow.” ([jmlr.org](https://jmlr.org/tmlr/papers/))
+
+## Section 3: Emerging Trends
+
+- **Structured-data foundation models are moving from prediction to scientific latent structure.** PerturbPFN is emblematic: PFN-style amortization is no longer just “tabular AutoML,” but a way to impose SCM-like synthetic priors over graphs, interventions, and latent mechanisms.
+
+- **Tabular generation is becoming representation-theoretic.** The logit-coordinate paper and recent query/temporal fidelity papers suggest the field is converging on “choose the right geometry before training the generator” rather than only comparing GAN/diffusion/flow families.
+
+- **Entity resolution is entering its controlled-ablation phase.** The new ER paper disentangles architecture, backbone variant, size, and distribution shift—exactly what the LLM-for-ER literature needed after a wave of anecdotal wins.
+
+- **Interpretability is shifting from feature existence to effect stability.** SAE features, concept manifolds, activation patching, and circuit extraction papers are converging on the same uncomfortable point: semantically nameable internal objects need not support stable causal interventions.
+
+- **Database systems are absorbing LLM inference as a query-planning problem.** Kalypso’s relational serving abstraction and related semantic-operator work point toward optimizers that reason about prompts, KV caches, operator pipelines, and cost/accuracy jointly.
+
+## Section 4: Worth Watching
+
+- **TEmBed-T: A Multi-Dimensional Benchmark for Table-Level Embeddings.** A TaDA@VLDB 2026 benchmark extension for evaluating table-level embeddings beyond retrieval alone; useful for data-lake discovery and table-representation work. ([arxiv.org](https://arxiv.org/abs/2607.24130))
+
+- **Kalypso: Relational LLM Serving.** Treat as a systems artifact to watch: query-aware LLM serving for semantic operators, especially if code or reproducible workloads appear. ([arxiv.org](https://arxiv.org/abs/2607.23815))
+
+- **Causal-TS.** A pip-installable Python library for high-dimensional and nonstationary time-series causal discovery, wrapping CDNOTS, CDNOTS+, CEDAR, GRACE, GES, Granger, LASSO-VAR, LGES, GPU CI tests, changepoint/regime discovery, and optional DoWhy integration. ([arxiv.org](https://arxiv.org/abs/2607.24673))
+
+- **ABISS: Evaluating Text-to-SQL Systems Through Agent Interaction.** Benchmark and simulator for ambiguous/unanswerable Text-to-SQL, with style-aware simulated users and multi-turn clarification; worth tracking because static Text-to-SQL metrics are increasingly misaligned with agentic database use. ([arxiv.org](https://arxiv.org/abs/2607.23340))
+
+- **Context Is King: How In-Context Specification Shapes the Geometry of Concepts.** Not a Top 5 pick today because of overlap with the SAE paper, but the activation-patching result—context-imposed geometry dominating pretrained priors in larger Gemma/Qwen models—is worth suppressing from future repeats. ([arxiv.org](https://arxiv.org/abs/2607.24425))
+
+## Section 5: Discord Highlights
+
+**Jul 28 — research brief highlights**
+
+1. **Beyond Scale and Generation: Understanding Language Model-based Entity Matching** — controlled 1,215-run study disentangles LM architecture, variant, scale, shortcuts, and shift in ER.  
+2. **Logit-Coordinate Generative Models for Mixed Continuous-Categorical Tabular Data** — principled logit geometry for categorical variables in flow/diffusion tabular generators.  
+3. **PerturbPFN** — PFN-style synthetic-prior model for drug perturbations via latent graphs, sparse interventions, and SCM decoding.  
+4. **Sparse Autoencoders Encode Both Concepts and Functions** — SAE features can be interpretable and causal without being stable steering directions.  
+5. **Directional Influence Function** — influence estimation for constrained learning via variational inequalities and feasibility-aware sensitivity.
+
+Full brief: <link inserted by workflow>
+
+```delivered_items_jsonl
+{"date_delivered":"2026-07-28","type":"paper","title":"Beyond Scale and Generation: Understanding Language Model-based Entity Matching","authors_or_org":"Zeyu Zhang, Xue Li, Iacer Calixto, Paul Groth, Sebastian Schelter","url":"https://arxiv.org/abs/2607.24688","memory":"Top 5 paper. Covered July 27 2026 arXiv cs.DB preprint: controlled factorial study of LM-based entity matching across bi-encoder/cross-encoder/generative matchers, Qwen3 variants/sizes, nine datasets, 1,215 fine-tuning runs, transfer, cost, shortcuts, and distribution shift. Suppress future arXiv/code/venue versions unless materially changed."}
+{"date_delivered":"2026-07-28","type":"paper","title":"Logit-Coordinate Generative Models for Mixed Continuous-Categorical Tabular Data","authors_or_org":"Yuefei Shen, Xiaotong Shen","url":"https://arxiv.org/abs/2607.23348","memory":"Top 5 paper. Covered July 25 2026 arXiv stat.ML paper on logit-coordinate framework for mixed continuous-categorical tabular generation, Logit Flow Matching, Logit Diffusion, mixed-distribution discrepancy, stability/rate analysis, rare-cell imbalance, and real-data benchmarks. Suppress future arXiv/code/venue reposts unless materially revised."}
+{"date_delivered":"2026-07-28","type":"paper","title":"PerturbPFN: Probing the Limits of Synthetic Priors in Drug Perturbation Modelling","authors_or_org":"Yuche Gao, José Miguel Hernández-Lobato, Siyuan Guo","url":"https://arxiv.org/abs/2607.23447","memory":"Top 5 paper. Covered July 26 2026 arXiv / ICML 2026 FMSD workshop paper on PFN-style amortized synthetic-prior model for drug perturbations: latent system graph, sparse atomic intervention targets, intervention strengths, SCM decoder, single-cell perturbation evaluation. Suppress future FMSD/arXiv/code/repost versions unless materially expanded."}
+{"date_delivered":"2026-07-28","type":"paper","title":"Sparse Autoencoders Encode Both Concepts and Functions: The Downstream Geometry of Feature Effects","authors_or_org":"Phu Gia Hoang, Anwoy Chatterjee, Tanmoy Chakraborty, Iryna Gurevych, Subhabrata Dutta","url":"https://arxiv.org/abs/2607.24645","memory":"Top 5 paper. Covered July 27 2026 arXiv paper introducing Feature-Effect Geometry Analysis for SAE feature interventions, distinguishing value-like and pointer-like features and showing interpretable features rarely provide stable one-dimensional steering directions. Suppress future arXiv/code/venue/social versions unless materially changed."}
+{"date_delivered":"2026-07-28","type":"paper","title":"Directional Influence Function: Estimating Training Data Influence in Constrained Learning","authors_or_org":"Xin Wang, R. Tyrrell Rockafellar, Xuegang (Jeff) Ban","url":"https://arxiv.org/abs/2607.23388","memory":"Top 5 paper. Covered July 25 2026 arXiv paper on constraint-aware influence estimation via variational inequalities for constrained learning, fairness/safety/physics/logical constraints, comparisons to leave-one-out retraining and classical/penalty IFs. Suppress future versions unless theory or experiments materially change."}
+{"date_delivered":"2026-07-28","type":"proceedings","title":"arXiv cs.LG/stat.ML recent stream snapshot for July 28 2026","authors_or_org":"arXiv cs.LG and stat.ML","url":"https://arxiv.org/list/cs.LG/recent","memory":"Venue Watch. Covered July 28 2026 daily arXiv ML/stat.ML stream: 326 cs.LG entries and 49 stat.ML entries, with clusters in entity matching, mixed tabular generation, SAE causal effects, constrained influence, context-shaped representations, temporal graph drift, synthetic-prior PFNs, Bayesian causal discovery, kernel discrepancy, and context-adaptive inference. Suppress this daily broad stream snapshot."}
+{"date_delivered":"2026-07-28","type":"proceedings","title":"arXiv cs.DB recent stream snapshot for July 28 2026","authors_or_org":"arXiv cs.DB","url":"https://arxiv.org/list/cs.DB/recent","memory":"Venue Watch. Covered July 28 2026 cs.DB stream with 19 entries: language-model entity matching, TEmBed-T table embeddings, Kalypso relational LLM serving, ABISS Text-to-SQL interaction benchmark, ERUnderstand, data-quality templates, denial constraints, filtered vector search, adaptive time-series imputation, and related DB/LLM systems. Suppress this daily broad stream snapshot."}
+{"date_delivered":"2026-07-28","type":"proceedings","title":"TMLR July 2026 accepted papers incremental update as of July 28","authors_or_org":"Transactions on Machine Learning Research","url":"https://jmlr.org/tmlr/papers/","memory":"Venue Watch. Covered incremental TMLR July 2026 accepted-paper additions visible by July 28 beyond earlier July snapshots, including On the Convergence Analysis of Muon, Mixture of Sparse Attention, Conditional Independence Tests for Constraint-Based Causal Discovery survey, FedIndex, TensorGRaD, LLM-initialized bandits, REPA-FPO, and self-supervised time-series neural operators. Suppress this incremental snapshot; avoid repeating full July batch."}
+{"date_delivered":"2026-07-28","type":"benchmark","title":"TEmBed-T: A Multi-Dimensional Benchmark for Table-Level Embeddings","authors_or_org":"Ayeen Poostforoushan, Liane Vogel, Carsten Binnig","url":"https://arxiv.org/abs/2607.24130","memory":"Worth Watching. Covered July 27 2026 arXiv / TaDA@VLDB 2026 benchmark extending TEmBed for table-level embeddings beyond a single retrieval task, with multi-dimensional evaluation for table retrieval, data-lake discovery, and table classification. Suppress future arXiv/TaDA/VLDB/repo mentions unless benchmark materially expands."}
+{"date_delivered":"2026-07-28","type":"software","title":"Kalypso: Relational LLM Serving","authors_or_org":"Hojae Son, Md Ashraful Islam, Huy Gia Cao, Hui Guan, Marco Serafini","url":"https://arxiv.org/abs/2607.23815","memory":"Worth Watching and cs.DB Venue Watch. Covered relational LLM serving system for semantic query plans, pipelined semantic operators, KV-cache reuse across operators, adaptive memory-aware scheduling, and reported speedups up to 4.57x. Suppress future arXiv/code/venue mentions unless artifact or results materially change."}
+{"date_delivered":"2026-07-28","type":"software","title":"Causal-TS: A Python Library for Causal Discovery in High-Dimensional and Nonstationary Time Series","authors_or_org":"Mohammad Fesanghary","url":"https://arxiv.org/abs/2607.24673","memory":"Worth Watching. Covered Causal-TS library with CDNOTS, CDNOTS+, CEDAR, GRACE, wrappers for GES/Granger/LASSO-VAR/LGES, PyTorch GPU CI tests, changepoint/regime discovery, synthetic generators, CLI, and optional DoWhy integration. Suppress future paper/repo/repost mentions unless library materially expands."}
+{"date_delivered":"2026-07-28","type":"benchmark","title":"ABISS: Evaluating Text-to-SQL Systems Through Agent Interaction","authors_or_org":"Giovanni Sullutrone, Luca Sala, Sania Aftar, Georgia Koutrika, Sonia Bergamaschi","url":"https://arxiv.org/abs/2607.23340","memory":"Worth Watching. Covered ambiguity/unanswerable Text-to-SQL benchmark and dynamic simulation environment with taxonomy, multi-agent generation, category conformance validation, ABISS-BIRD/ABISS-Spider, style-aware simulated users, and multi-turn clarification failures. Suppress future arXiv/code/benchmark reposts unless materially expanded."}
+{"date_delivered":"2026-07-28","type":"paper","title":"Context Is King: How In-Context Specification Shapes the Geometry of Concepts","authors_or_org":"Elad David, Max Fomin","url":"https://arxiv.org/abs/2607.24425","memory":"Worth Watching. Covered July 27 2026 arXiv representation-geometry paper showing in-context specifications can impose concept topology over tokens, dominate pretrained priors in larger Gemma/Qwen models, and causally affect successor answers via activation patching. Suppress future versions unless substantially extended or selected for Top 5."}
+```

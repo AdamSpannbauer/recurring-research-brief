@@ -1,0 +1,108 @@
+## Section 1: Top 5 Papers
+
+1. **Model of Models: When Does Emitting a Specialist Beat Attending, Adapting, or Tuning?**  
+   **Author:** John C. Howell  
+   **Venue/source:** arXiv cs.LG  
+   **Release date:** July 20, 2026  
+   **Link:** ([arxiv.org](https://arxiv.org/abs/2608.21386))  
+   This paper asks a useful architectural question for foundation-model adaptation: when should a system condition by attending to examples, taking gradient steps, tuning adapters, or directly emitting a task-specialized model? The strongest result is not universal superiority, but a regime map. Emitted specialists match TabPFN-style amortized tabular performance on clinical few-shot classification while avoiding repeated support-set attention, work well for low-dimensional regression and shape programs, but fall short of in-context attention for high-dimensional sequence modeling. The weight-space compositionality claim is speculative but potentially important for reusable task-conditioned predictors.  
+   **Why you should care:** It reframes tabular and few-shot foundation models as one point in a broader design space of amortized specialization mechanisms.
+
+2. **Interpretable AI with Local Distillation**  
+   **Authors:** Erin Craig, Yiling Huang, Snigdha Panigrahi  
+   **Venue/source:** arXiv stat.ME / stat.ML / cs.LG  
+   **Release date:** August 24, 2026  
+   **Link:** ([arxiv.org](https://arxiv.org/abs/2608.23538))  
+   Local distillation uses a strong black-box teacher—explicitly including tabular foundation models and boosted ensembles—to construct a sparse local linear student at each query point. The teacher defines locality by similarity in predicted outcomes and anchors the local fit with its prediction; Gaussian randomization plus repeated refits yields feature-selection frequencies and subgroup structure. The empirical claim is attractive: across 17 benchmarks, the local students nearly match the teacher while remaining sparse and query-specific, and a gene-expression case study surfaces heterogeneous feature usage that a global linear model misses.  
+   **Why you should care:** This is one of the cleaner recent attempts to make high-performing tabular predictors interpretable “as deployed,” not merely post-hoc explained.
+
+3. **Barycentric Fused Gromov-Wasserstein Balancing for Causal Inference under Multiple Treatments**  
+   **Authors:** Yuki Murakami, Takumi Hattori, Kohsuke Kubota  
+   **Venue/source:** arXiv stat.ME / stat.ML / cs.LG  
+   **Release date:** August 22, 2026  
+   **Link:** ([arxiv.org](https://arxiv.org/abs/2608.22024))  
+   The paper targets heterogeneous single and interaction treatment effects with multiple simultaneous treatments, where pairwise representation balancing scales poorly and can destroy local structural relationships. Its CIHSI-Net model replaces pairwise treatment-pattern alignment with a shared Wasserstein barycenter and uses fused Gromov-Wasserstein discrepancy to preserve local proximity structure. The claimed complexity improvement is from quadratic to linear in the number of treatment patterns, with simulations and a marketing application showing gains over baselines. The key idea is not just “use OT,” but use barycentric alignment as a scalable multi-treatment representation objective.  
+   **Why you should care:** Multi-treatment HTE remains underdeveloped; this gives a concrete representation-learning objective for the combinatorial treatment-pattern setting.
+
+4. **JetStream: Generating Query Accelerators for Existing Database Systems**  
+   **Authors:** Akhilesh Balasingam, Amadou Ngom, Geoffrey X. Yu, Tim Kraska  
+   **Venue/source:** arXiv cs.DB  
+   **Release date:** August 23, 2026  
+   **Link:** ([arxiv.org](https://arxiv.org/abs/2608.22476))  
+   JetStream extends the recent “LLM-generated database systems” line but makes a pragmatic pivot: instead of replacing a DBMS with a generated workload-specialized system, it generates query-specific accelerators that plug into existing engines. The system uses a measurement-driven agentic workflow, an engine-neutral substrate for execution/transactions/state, generated backend adapters, and state-maintenance policies for dynamic data. The reported TPC-H SF=20 gains are very large—833× read-only over DuckDB and 375× under periodic refreshes—so the obvious question is benchmark scope and robustness. Still, the systems idea is important.  
+   **Why you should care:** It suggests a plausible future where LLMs synthesize narrow database accelerators around stable DBMS substrates rather than whole bespoke systems.
+
+5. **Reinforcement Learning on Benign Facts Amplifies Leakage of Memorized Private Data**  
+   **Authors:** Renfei Zhang, Niloofar Mireshghallah  
+   **Venue/source:** arXiv cs.LG  
+   **Release date:** August 22, 2026  
+   **Link:** ([arxiv.org](https://arxiv.org/abs/2608.21727))  
+   This is a worrying training-dynamics result. The authors show that RLVR on benign factual data—containing no PII—can increase extraction of PII that an instruct model had already memorized but rarely emitted. They probe targeted name-to-email recall and untargeted free recall; on DeepSeek-V3.1, verbatim recall@k reportedly rises from 0.155 to 0.370, with the largest absolute leakage in the largest model. Reasoning and refusal rates remain largely intact, suggesting RL changes accessibility of memorized content rather than simply degrading alignment.  
+   **Why you should care:** It connects post-training objectives, memorization, and privacy leakage in a way that standard “train only on safe data” assumptions do not cover.
+
+## Section 2: Venue Watch
+
+- **arXiv Aug. 25 new-submission stream.** The day’s cs.LG listing shows **164 new submissions** out of 485 entries, stat.ML shows **15 new submissions**, and cs.DB shows **9 new submissions**. The useful clusters were: task-conditioned model emission, interpretability/local distillation, RLVR privacy leakage, diffusion posterior information, causal multi-treatment balancing, stochastic-dynamics generative benchmarks, learned/query-specific DB accelerators, streaming attribution, and temporal-graph structure channels. This was a high-signal day for Adam’s interests, especially around “foundation model as conditioning mechanism,” causal representation objectives, and agentic DBMS generation. ([arxiv.org](https://arxiv.org/list/cs.LG/new))
+
+- **TMLR August 2026 incremental update, visible Aug. 25.** New top-of-page items include backdoor poisoned-sample detection under imbalance, privacy leakage via output label space and DP continual learning, RLVR code-verifier analysis, closed-loop RNN auditing, decomposable neural symbolic regression, local slow-manifold structure in working memory, judge-gated loop reliability, transformer ICL MLP-layer analysis, causal Bayesian optimization, tool-using agent subtask graphs, and sparse-autoencoder blind-spot reduction. The August stream is now clearly weighted toward reliability, verification, agent evaluation, representation diagnostics, and post-training failure modes. ([jmlr.org](https://jmlr.org/tmlr/papers/))
+
+- **UAI 2026 PMLR Volume 337.** The official PMLR proceedings page is now visible for the 42nd UAI, held August 17–21 in Amsterdam/KIT, edited by Emilija Perković and Daniel Malinsky. Since the accepted-paper page and awards were already covered, the new value here is proceedings-level venue awareness: early entries include conformal sets, uncertainty calibration, DP synthetic data for causal inference, partial causal structure learning for conformal inference under interventions, and covariate-mismatch treatment-effect estimation; later entries include robust average-reward RL, higher-order uncertainty via imprecise probabilities, transformer counting, and causal normalizing flows for interventional outcomes over time. ([proceedings.mlr.press](https://proceedings.mlr.press/v337/))
+
+- **cs.DB Aug. 25 database stream.** The database stream is unusually aligned with ML-systems concerns: JetStream generates accelerators around existing DBMSes; DAGSmith targets dependency-aware rewriting for dbt-style SQL pipelines; HAWKEYE adds a cohesion-aware structural channel for temporal link prediction; Oracle’s MGA paper covers scoped shared memory for AI Database workloads; and closed-form predicate-level Shapley attribution gives exact sliding-window explanations for SUM/COUNT/AVG/variance. ([arxiv.org](https://arxiv.org/list/cs.DB/new))
+
+## Section 3: Emerging Trends
+
+- **Adaptation is being decomposed into mechanisms.** Several papers now compare conditioning routes—ICL, gradient adaptation, emitted specialists, LoRA, routing, and generated accelerators—rather than treating “foundation model adaptation” as a monolith.
+
+- **Reliability work is becoming process-aware.** The strongest new benchmarks and methods are not just scoring final outputs; they audit judge-gated loops, agent traces, deletion semantics, unlearning extraction, and DBMS state maintenance.
+
+- **Causal ML is moving beyond binary-treatment representation balancing.** Multi-treatment interaction effects, stochastic interventions, causal Bayesian optimization, and causal transportability are converging on richer representation objectives and design criteria.
+
+- **Interpretability is shifting from explanation artifacts to locally executable models.** Local distillation, commutator geometry, mechanistic tomography, and SAE blind-spot work all point toward interpretable surrogates or measurements that can be stress-tested rather than merely visualized.
+
+- **Database systems are absorbing agentic synthesis while preserving old invariants.** JetStream, DAGSmith, semantic isolation, verified model hubs, and proof-gated lakehouse work all try to let LLMs generate or optimize components without discarding transactions, maintenance, provenance, or equivalence.
+
+## Section 4: Worth Watching
+
+- **Width-Independent Compressibility of Deep Neural Networks** — theory result proving that wide analytic-activation MLP teachers can be approximated by same-depth narrower networks whose width depends on error and effective input dimension, not original width. Worth tracking for compression and “why overwide models are compressible” theory. ([arxiv.org](https://arxiv.org/abs/2608.21752))
+
+- **A Commutator Framework for Selective Spectral Alignment in Deep Neural Networks** — finite-width geometry of gates, covariances, sensitivities, AGOPs, and neural feature matrices. Potentially useful language for representation alignment beyond “features line up after training.” ([arxiv.org](https://arxiv.org/abs/2608.22910))
+
+- **StocBench: A Benchmark for Generative Modeling of Stochastic Dynamics** — benchmark/code for transport and diffusion-style probabilistic forecasting of stochastic fluid flows, including invariant-measure preservation and inference-budget tradeoffs. ([arxiv.org](https://arxiv.org/abs/2608.22309))
+
+- **Stress Testing Unlearning Algorithms / WMDP++** — extends unlearning evaluation with targeted extraction and semantically close boundary questions, directly addressing common benchmark blind spots. ([arxiv.org](https://arxiv.org/abs/2608.22527))
+
+- **Closed-Form Predicate-Level Shapley Attribution for Sliding-Window Aggregates** — exact streaming explanations for common aggregates using maintained summaries, with a sharp boundary showing MAX/MIN/quantiles do not admit the same moment-polynomial treatment. ([arxiv.org](https://arxiv.org/list/cs.DB/new))
+
+- **CatchBench: When Can an Agent Failure Be Caught?** — benchmark framing agent failure detection by information state: pre-run configuration, live trace prefix, and post-run trace. The emphasis on unresolved contrasts rather than forced leaderboards is healthy benchmark design. ([arxiv.org](https://arxiv.org/list/cs.LG/new))
+
+## Section 5: Discord Highlights
+
+**Aug. 25 — Research brief highlights**
+
+Top papers:
+1. **Model of Models: When Does Emitting a Specialist Beat Attending, Adapting, or Tuning?** — maps when emitted task specialists beat ICL, adaptation, or tuning.
+2. **Interpretable AI with Local Distillation** — sparse local linear students nearly match black-box tabular teachers.
+3. **Barycentric Fused Gromov-Wasserstein Balancing for Causal Inference under Multiple Treatments** — scalable representation balancing for multi-treatment HTE.
+4. **JetStream: Generating Query Accelerators for Existing Database Systems** — LLM-generated accelerators that extend, rather than replace, DBMSes.
+5. **Reinforcement Learning on Benign Facts Amplifies Leakage of Memorized Private Data** — RLVR can make latent memorized PII much more extractable.
+
+Full brief: <link inserted by workflow>
+
+```delivered_items_jsonl
+{"date_delivered":"2026-08-25","type":"paper","title":"Model of Models: When Does Emitting a Specialist Beat Attending, Adapting, or Tuning?","authors_or_org":"John C. Howell","url":"https://arxiv.org/abs/2608.21386","memory":"Top 5 paper. Covered task-conditioned specialist emission versus zero-shot, in-context attention, test-time adaptation, and tuning; includes TabPFN-like clinical few-shot comparison, low-dimensional regression gains, sequence-modeling limits, and speculative weight-space composition. Suppress arXiv/repost/venue versions unless regime map or empirical scope materially expands."}
+{"date_delivered":"2026-08-25","type":"paper","title":"Interpretable AI with Local Distillation","authors_or_org":"Erin Craig, Yiling Huang, Snigdha Panigrahi","url":"https://arxiv.org/abs/2608.23538","memory":"Top 5 paper. Covered local distillation from black-box teachers such as tabular foundation models or GBDTs into sparse query-specific linear students with teacher-defined locality, pseudo-observation anchoring, randomized refit stability, 17 benchmarks, and gene-expression subgroup discovery. Suppress future arXiv/code/venue mentions unless substantially revised."}
+{"date_delivered":"2026-08-25","type":"paper","title":"Barycentric Fused Gromov-Wasserstein Balancing for Causal Inference under Multiple Treatments","authors_or_org":"Yuki Murakami, Takumi Hattori, Kohsuke Kubota","url":"https://arxiv.org/abs/2608.22024","memory":"Top 5 paper. Covered CIHSI-Net and BFG-WB objective for heterogeneous single and interaction effects under multiple simultaneous treatments; shared Wasserstein barycenter reduces pairwise treatment-pattern balancing from quadratic to linear while preserving local structure via fused GW. Suppress future versions unless theory/experiments materially expand."}
+{"date_delivered":"2026-08-25","type":"paper","title":"JetStream: Generating Query Accelerators for Existing Database Systems","authors_or_org":"Akhilesh Balasingam, Amadou Ngom, Geoffrey X. Yu, Tim Kraska","url":"https://arxiv.org/abs/2608.22476","memory":"Top 5 paper and cs.DB Venue Watch. Covered agentic generation of query-specific accelerators that extend existing DBMSes, with engine-neutral substrate, backend adapters, maintenance logic, and large TPC-H speedup claims. Suppress arXiv/venue/code/social repeats unless system, benchmark, or artifact materially changes."}
+{"date_delivered":"2026-08-25","type":"paper","title":"Reinforcement Learning on Benign Facts Amplifies Leakage of Memorized Private Data","authors_or_org":"Renfei Zhang, Niloofar Mireshghallah","url":"https://arxiv.org/abs/2608.21727","memory":"Top 5 paper. Covered RLVR on benign non-PII facts increasing extractability of already-memorized PII, including targeted and untargeted probes, DeepSeek-V3.1 recall@k increase, size scaling, and claim that accessibility changes without broad reasoning/refusal degradation. Suppress future versions unless privacy mechanism or evidence materially changes."}
+{"date_delivered":"2026-08-25","type":"proceedings","title":"arXiv cs.LG/stat.ML/cs.DB new-submission stream for August 25 2026","authors_or_org":"arXiv cs.LG, stat.ML, cs.DB","url":"https://arxiv.org/list/cs.LG/new","memory":"Venue Watch. Covered Aug 25 2026 streams: cs.LG 164 new submissions out of 485 entries, stat.ML 15 new, cs.DB 9 new; themes in emitted specialists, local distillation, RLVR privacy leakage, diffusion information dynamics, multi-treatment causal balancing, stochastic-dynamics generation, generated DB accelerators, streaming attribution, and temporal graph structure. Suppress repeat daily stream summary."}
+{"date_delivered":"2026-08-25","type":"proceedings","title":"TMLR August 2026 accepted papers incremental update as of August 25","authors_or_org":"Transactions on Machine Learning Research","url":"https://jmlr.org/tmlr/papers/","memory":"Venue Watch. Covered visible Aug 25 TMLR additions/top-of-page activity including RPP poisoned-sample detection, privacy leakage and DP continual learning, Aletheia RLVR code verifiers, closed-loop RNN auditing, decomposable neural symbolic regression, slow manifolds, judge-gated loop reliability, transformer ICL MLP layers, causal Bayesian optimization, tool-using subtask graphs, and SAE blind-spot reduction. Suppress repeat Aug 25 incremental snapshot."}
+{"date_delivered":"2026-08-25","type":"proceedings","title":"UAI 2026 PMLR Volume 337 proceedings visibility","authors_or_org":"Conference on Uncertainty in Artificial Intelligence / PMLR","url":"https://proceedings.mlr.press/v337/","memory":"Venue Watch. Covered official PMLR Volume 337 proceedings page for UAI 2026, held Aug 17-21 2026 in Amsterdam/KIT, emphasizing proceedings-level clusters in conformal uncertainty, DP synthetic data for causal inference, causal structure learning, treatment-effect estimation under mismatch, robust RL, imprecise uncertainty, transformer counting, and causal normalizing flows. Accepted-page and awards were previously covered; suppress repeat broad proceedings summary."}
+{"date_delivered":"2026-08-25","type":"proceedings","title":"arXiv cs.DB new-submission stream for August 25 2026","authors_or_org":"arXiv cs.DB","url":"https://arxiv.org/list/cs.DB/new","memory":"Venue Watch. Covered Aug 25 2026 cs.DB stream with residual privacy budgeting, JetStream query accelerators, DAGSmith dbt-style SQL pipeline rewriting, HAWKEYE temporal link prediction structural channel, Oracle MGA shared-memory abstraction, predicate-level Shapley for sliding-window aggregates, wildcard LIKE joins/filters, and related DB systems items. Suppress repeat daily stream summary."}
+{"date_delivered":"2026-08-25","type":"paper","title":"Width-Independent Compressibility of Deep Neural Networks","authors_or_org":"Hong-Yi Wang, Mingze Wang, Liu Ziyin","url":"https://arxiv.org/abs/2608.21752","memory":"Worth Watching. Covered uniform compressibility theorem for deep analytic-activation MLPs showing approximation by same-depth narrow networks with width independent of original teacher width and depending on error/effective input dimension. Suppress future arXiv/repost/venue versions unless theory materially changes."}
+{"date_delivered":"2026-08-25","type":"paper","title":"A Commutator Framework for Selective Spectral Alignment in Deep Neural Networks","authors_or_org":"Kaj Nyström","url":"https://arxiv.org/abs/2608.22910","memory":"Worth Watching. Covered finite-width geometric framework for spectral alignment using commutators among gates, covariances, sensitivities, AGOPs, and neural feature matrices; layerwise decomposition and Lyapunov-style stabilization criteria. Suppress future versions unless selected for Top 5 or substantially expanded."}
+{"date_delivered":"2026-08-25","type":"benchmark","title":"StocBench: A Benchmark for Generative Modeling of Stochastic Dynamics","authors_or_org":"Sebastian Pfister, Benjamin Holzschuh, Nils Thuerey","url":"https://arxiv.org/abs/2608.22309","memory":"Worth Watching benchmark. Covered stochastic-fluid generative modeling benchmark for transport/diffusion and few-step distillation methods, evaluating one-step distributional accuracy, invariant-measure preservation, and inference-budget tradeoffs on stochastic Kolmogorov flow. Suppress future arXiv/code/dataset mentions unless benchmark materially expands."}
+{"date_delivered":"2026-08-25","type":"benchmark","title":"Stress Testing Unlearning Algorithms / WMDP++","authors_or_org":"Noam Diamant, Ethan Fetaya, Neta Glazer","url":"https://arxiv.org/abs/2608.22527","memory":"Worth Watching benchmark. Covered WMDP++ extension for LLM unlearning evaluation with targeted extraction of unlearned information and boundary questions semantically close to unlearned content. Suppress future arXiv/code/benchmark mentions unless artifact materially expands or becomes Top 5."}
+{"date_delivered":"2026-08-25","type":"paper","title":"Closed-Form Predicate-Level Shapley Attribution for Sliding-Window Aggregates","authors_or_org":"Pouya Khani, Ira Assent","url":"https://arxiv.org/abs/2608.23087","memory":"Worth Watching and cs.DB item. Covered exact predicate-level Shapley attribution for streaming sliding-window SUM, COUNT, AVG, variance using maintained summaries; includes moment-polynomial characterization and negative result for MAX/MIN/quantiles. Suppress future arXiv/venue/tool repeats unless theory or implementation materially changes."}
+{"date_delivered":"2026-08-25","type":"benchmark","title":"CatchBench: When Can an Agent Failure Be Caught?","authors_or_org":"Yue Zhao","url":"https://arxiv.org/abs/2608.22808","memory":"Worth Watching benchmark. Covered agent-failure audit benchmark across PRE declared configuration, LIVE trace prefix, and POST completed trace information states, with seven task contracts and emphasis on unresolved contrasts and shortcut diagnosis. Suppress future arXiv/repo/benchmark repeats unless artifact materially expands."}
+```

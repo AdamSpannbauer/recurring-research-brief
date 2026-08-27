@@ -1,0 +1,104 @@
+## Section 1: Top 5 Papers
+
+1. **TailSFT: Filtered Fine-Tuning Improves Post-Training Performance**  
+   **Authors:** Sadhika Malladi, Samy Jelassi, Dylan Foster, Jordan T. Ash, Akshay Krishnamurthy  
+   **Venue/source:** arXiv  
+   **Date:** submitted August 26, 2026  
+   **Link:** arXiv. ([arxiv.org](https://arxiv.org/abs/2608.25756))  
+   **Summary:** TailSFT asks a deceptively important pipeline question: are SFT checkpoints optimized for final supervised loss, or for being good initial conditions for RL post-training? The method filters out sequences that the model already fits, concentrating SFT updates on tail / under-covered regions of the data distribution. On OLMo-3 7B, this increases pass@16 on math and coding tasks by up to 17 absolute points and yields up to 4-point pass@1 gains after GRPO. The paper’s value is not just another recipe: it reframes intermediate model selection around downstream trainability and coverage rather than immediate next-token loss. ([arxiv.org](https://arxiv.org/abs/2608.25756))  
+   **Why you should care:** It is a clean data-centric bridge between SFT, coverage, and RLVR success—likely to influence how pre-RL checkpoints are evaluated.
+
+2. **Spectral Allocation: Why Muon Outperforms Adam, and How to Improve Muon**  
+   **Authors:** Xiaodong Wu, Wenyi Yu, Chao Zhang, Philip Woodland  
+   **Venue/source:** arXiv  
+   **Date:** submitted August 26, 2026  
+   **Link:** arXiv. ([arxiv.org](https://arxiv.org/abs/2608.25990))  
+   **Summary:** This paper gives one of the more concrete mechanistic accounts of Muon-style optimizer gains. The authors probe Transformer checkpoints out of sample, decompose momentum buffers into singular directions, and estimate loss-optimal step sizes along those directions. They find a stable anisotropic profile: a fragile “head” near edge-of-stability needs conservative steps, while the spectral bulk can tolerate larger moves. SAMuon then preserves Muon-scale updates for the head while amplifying the bulk via a static spectral prior; SAMuon-lite approximates this with near-zero overhead. Reported token savings over Muon are 13.3–24.0% on 124M–1B modded-nanogpt models. ([arxiv.org](https://arxiv.org/abs/2608.25990))  
+   **Why you should care:** It turns optimizer folklore into an actionable spectral diagnostic, directly relevant to pretraining efficiency and representation dynamics.
+
+3. **MetaSieve: Faster Relational Deep Learning through SQL-Based Metapath Selection**  
+   **Authors:** Fahim Shahriar Khan, Ashraf Aboulnaga  
+   **Venue/source:** arXiv / cs.DB  
+   **Date:** submitted August 26, 2026  
+   **Link:** arXiv. ([arxiv.org](https://arxiv.org/abs/2608.25903))  
+   **Summary:** MetaSieve targets a real bottleneck in relational deep learning: GNN training over row-as-node database graphs spends much of its cost sampling large subgraphs through foreign-key metapaths. The key idea is to use the database engine itself—SQL joins and aggregations—to score candidate metapath extensions before GNN training. Low-scoring metapaths are pruned using task labels and database statistics, independent of GNN parameters. On RelBench with multiple backbones, the authors report large per-epoch training-time reductions while preserving or improving accuracy. The paper is a useful corrective to “just graphify the database” recipes: relational structure should be optimized before message passing. ([arxiv.org](https://arxiv.org/abs/2608.25903))  
+   **Why you should care:** It is an elegant systems/statistics interface for relational FMs and RDL, exploiting SQL as a structure-selection engine.
+
+4. **Comparing Corrupted Constrained Learning Problems**  
+   **Authors:** Laura Iacovissi, Rabanus Derr, Robert C. Williamson  
+   **Venue/source:** arXiv  
+   **Date:** submitted August 26, 2026  
+   **Link:** arXiv. ([arxiv.org](https://arxiv.org/abs/2608.25745))  
+   **Summary:** The paper revisits the data processing inequality in the setting that actually matters for machine learning: constrained hypothesis classes. Classical Blackwell/DeGroot comparisons say stochastic post-processing cannot lower Bayes risk for all priors and losses, but that assumes unrestricted decision rules. The authors show this can fail under model-class constraints, then formulate a generalized DPI for constrained Bayes risk. The characterization via containment of “superprediction sets” gives a new language for asking when corruption, compression, feature learning, or representation maps are beneficial or harmful relative to a fixed learner. ([arxiv.org](https://arxiv.org/abs/2608.25745))  
+   **Why you should care:** It sharpens a foundational assumption behind representation learning and bottleneck-style arguments: with constrained learners, “less information” can behave non-monotonically.
+
+5. **Bolt-on, Verifiable Provenance for LLM-Powered Data Processing**  
+   **Authors:** Yiming Lin, Sepanta Zeighami, Aditya G. Parameswaran  
+   **Venue/source:** arXiv / cs.DB  
+   **Date:** submitted August 25, 2026  
+   **Link:** arXiv. ([arxiv.org](https://arxiv.org/abs/2608.25210))  
+   **Summary:** BLIP introduces verifiable provenance for LLM-powered data processing: instead of asking an LLM or using embeddings to guess which input records supported an answer, it searches for a minimal subset of input text that reproduces the same or equivalent output under the same LLM. The authors provide eight strategies with guarantees of minimal verifiable provenance and an adaptive strategy to reduce search cost; they also extend the idea to multiple minimal provenances. Across seven datasets, BLIP is reported to guarantee answer reproduction and beat comparable-size provenance baselines by more than 30 accuracy points. ([arxiv.org](https://arxiv.org/abs/2608.25210))  
+   **Why you should care:** LLM data systems need provenance with executable semantics, not just attribution scores; BLIP is a plausible primitive for auditable semantic operators.
+
+## Section 2: Venue Watch
+
+- **NeurIPS 2026 official workshop list is now stable enough to replace unofficial workshop scraping.** NeurIPS announced 102 accepted workshops from 454 valid submissions, split across Sydney, Paris, and Atlanta, with workshops scheduled December 11–12 in Sydney and December 12–13 in Paris/Atlanta. For Adam’s interests, the list is strikingly dense in structured-data-adjacent themes: diffusion/flow decoding, stochastic dynamics, temporal systems, autonomous ML research, trustworthy evaluation, agent benchmarks, data attribution/provenance, privacy beyond private training, structured data / optimal transport, AI data readiness, neural-network artifacts as data, e-values, agentic systems theory, ML×OR, and database-like agent OS layers. This official announcement should suppress the previously tracked unofficial workshop-index item. ([blog.neurips.cc](https://blog.neurips.cc/2026/08/10/announcing-the-neurips-2026-workshops/))
+
+- **arXiv August 27 stream: very high volume, with a clearer split between post-training mechanics and data/agent systems.** The August 27 cs.LG listing shows 105 new submissions out of 308 total entries; stat.ML shows seven new submissions out of 41; cs.DB shows five new submissions out of 10. The strongest clusters were optimizer geometry / post-training, constrained-learning theory, representation auditing, relational deep learning, LLM provenance, vector-search reliability, and agent memory systems. ([arxiv.org](https://arxiv.org/list/cs.LG/new))
+
+- **VLDB 2026 program is moving into final pre-conference mode.** The conference program page is live for the August 31–September 4 Boston meeting, with opening-session slots for chair updates, reviewer/AE recognition, and best-paper awards. No stable public award-winner list appeared in the current crawl, so this is an awareness note rather than an awards summary. ([vldb.org](https://vldb.org/2026/program.html?utm_source=openai))
+
+## Section 3: Emerging Trends
+
+- **Post-training is being reinterpreted as distribution-shaping, not just reward maximization.** TailSFT, RL-post-training diagnostics, OPSD variants, and detectability/coverage work are converging on the same point: the base/SFT distribution must already expose enough solution mass for downstream RL-like procedures to exploit.
+
+- **Optimizer papers are becoming representation-measurement papers.** Recent Muon analyses, spectral allocation, Adam basis-dependence work, and Fisher/sharpness diagnostics treat optimizer state as a geometric object whose spectrum and coordinate choices affect what representations emerge.
+
+- **Structured-data ML is increasingly database-native.** MetaSieve, BLIP, guided table retrieval, operationalization-aware discovery, SQL verification, and semantic operator compilation all point toward a future where learned models sit inside query/provenance/planning systems rather than merely consuming exported tables.
+
+- **Interpretability is shifting from single-feature claims to multivariate and system-level claims.** ICON decomposition, MoE output dilution, SAE robustness under pruning, and mechanistic tomography all emphasize that isolated probes or features are often insufficient without variance attribution, perturbation stability, or intervention validation.
+
+- **Reliability benchmarks are becoming process-aware.** TraceML, agent transaction work, Thinkingbox, CatchBench, and BLIP-style provenance share a theme: evaluate the trajectory, evidence, and recoverability of decisions, not only the final answer.
+
+## Section 4: Worth Watching
+
+- **ICON Decomposition** — a multivariate concept-level explanation method that attributes layer variance to concepts after accounting for correlated concepts and outcomes; especially relevant for auditing shortcut learning in biomedical and tabular-like representation settings. ([arxiv.org](https://arxiv.org/abs/2608.26083))
+
+- **TraceML** — a corpus/schema of 4,465 human Kaggle development trajectories plus paired agent trajectories, exposing that current agents get stuck in narrow edit loops rather than alternating data, validation, model, and ensemble work like experts. ([arxiv.org](https://arxiv.org/abs/2608.26086))
+
+- **RCheck: Analyzing and Reducing Search Quality Differences in Vector Similarity Search** — shows mean recall hides severe per-query recall disparity in ANNS systems and proposes runtime adaptive effort tuning in pgvector, improving mean recall and target-recall coverage at fixed throughput. ([arxiv.org](https://arxiv.org/abs/2608.25185))
+
+- **Flower Hub** — a reproducible federated-learning benchmarking platform packaging FL workloads as executable, versioned applications spanning simulation and deployment, including financial tabular learning among its domains. ([arxiv.org](https://arxiv.org/abs/2608.25114))
+
+- **Common-Center Geometry and Certified Radial Reconstruction for Energy-Form Full Conformal Regions** — a Lean-formalized conformal-prediction geometry result for star-shaped energy-score FullCP regions, useful for low-dimensional multivariate uncertainty sets. ([arxiv.org](https://arxiv.org/abs/2608.24964))
+
+- **PolyMemDB** — a demo-style polyglot database for AI memory management, combining graph/vector/probability/spatiotemporal storage with provenance and temporal-decay semiring aggregation for resolving factual conflicts. ([arxiv.org](https://arxiv.org/abs/2608.25577))
+
+## Section 5: Discord Highlights
+
+**Aug 27 brief — top papers**
+
+1. **TailSFT: Filtered Fine-Tuning Improves Post-Training Performance** — SFT filtering for tail coverage yields better RL initializations.  
+2. **Spectral Allocation: Why Muon Outperforms Adam, and How to Improve Muon** — explains Muon via anisotropic spectral step-size tolerance and proposes SAMuon.  
+3. **MetaSieve: Faster Relational Deep Learning through SQL-Based Metapath Selection** — uses SQL statistics to prune relational GNN metapaths before training.  
+4. **Comparing Corrupted Constrained Learning Problems** — shows classical data-processing intuition can fail for constrained learners.  
+5. **Bolt-on, Verifiable Provenance for LLM-Powered Data Processing** — BLIP finds minimal input subsets that reproduce LLM data-processing answers.
+
+Full brief: <link inserted by workflow>
+
+```delivered_items_jsonl
+{"date_delivered":"2026-08-27","type":"paper","title":"TailSFT: Filtered Fine-Tuning Improves Post-Training Performance","authors_or_org":"Sadhika Malladi, Samy Jelassi, Dylan Foster, Jordan T. Ash, Akshay Krishnamurthy","url":"https://arxiv.org/abs/2608.25756","memory":"Top 5 paper. Covered Aug 26 2026 arXiv paper on filtering already-fit SFT sequences to emphasize tail/under-modeled regions, improving OLMo-3 7B pass@K and downstream GRPO pass@1. Suppress arXiv/code/venue/social reposts unless method or empirical scope materially expands."}
+{"date_delivered":"2026-08-27","type":"paper","title":"Spectral Allocation: Why Muon Outperforms Adam, and How to Improve Muon","authors_or_org":"Xiaodong Wu, Wenyi Yu, Chao Zhang, Philip Woodland","url":"https://arxiv.org/abs/2608.25990","memory":"Top 5 paper. Covered Aug 26 2026 arXiv paper giving out-of-sample spectral probing explanation of Muon optimizer gains, introducing SAMuon and SAMuon-lite with head/bulk spectral step allocation and token-savings claims. Suppress future arXiv/code/venue/social reposts unless optimizer theory or large-scale evidence materially changes."}
+{"date_delivered":"2026-08-27","type":"paper","title":"MetaSieve: Faster Relational Deep Learning through SQL-Based Metapath Selection","authors_or_org":"Fahim Shahriar Khan, Ashraf Aboulnaga","url":"https://arxiv.org/abs/2608.25903","memory":"Top 5 paper and cs.DB Venue Watch item. Covered SQL-based metapath selection layer for relational deep learning over multi-table databases/RelBench, pruning foreign-key metapaths using join/aggregation statistics and task labels before GNN training. Suppress arXiv/venue/code/repost versions unless benchmark or method materially expands."}
+{"date_delivered":"2026-08-27","type":"paper","title":"Comparing Corrupted Constrained Learning Problems","authors_or_org":"Laura Iacovissi, Rabanus Derr, Robert C. Williamson","url":"https://arxiv.org/abs/2608.25745","memory":"Top 5 paper. Covered Aug 26 2026 arXiv theory paper showing classical data processing inequality can fail under constrained hypothesis classes, introducing generalized constrained Bayes-risk DPI via superprediction-set containment. Suppress future arXiv/venue/repost versions unless theory materially changes."}
+{"date_delivered":"2026-08-27","type":"paper","title":"Bolt-on, Verifiable Provenance for LLM-Powered Data Processing","authors_or_org":"Yiming Lin, Sepanta Zeighami, Aditya G. Parameswaran","url":"https://arxiv.org/abs/2608.25210","memory":"Top 5 paper and cs.DB item. Covered BLIP framework for minimal verifiable provenance in LLM-powered data processing, identifying subsets of input text that reproduce same/equivalent LLM answer with guaranteed minimal strategies and multiple-provenance extension. Suppress future arXiv/venue/code/repost mentions unless provenance semantics, system, or evaluation materially expands."}
+{"date_delivered":"2026-08-27","type":"announcement","title":"NeurIPS 2026 official accepted workshops announcement","authors_or_org":"NeurIPS 2026 Workshop Chairs / NeurIPS Blog","url":"https://blog.neurips.cc/2026/08/10/announcing-the-neurips-2026-workshops/","memory":"Venue Watch. Covered official Aug 10 2026 NeurIPS workshop announcement: 102 accepted workshops from 454 valid submissions, split 48 Sydney, 28 Paris, 26 Atlanta, with workshop dates Dec 11-12 Sydney and Dec 12-13 Paris/Atlanta; highlighted structured-data, agent, provenance, privacy, stochastic dynamics, representation, and MLxOR themes. Suppress repeat official workshop-list summaries; future runs may cover accepted workshop papers/programs."}
+{"date_delivered":"2026-08-27","type":"proceedings","title":"arXiv cs.LG/stat.ML/cs.DB new-submission stream for August 27 2026","authors_or_org":"arXiv cs.LG, stat.ML, cs.DB","url":"https://arxiv.org/list/cs.LG/new","memory":"Venue Watch. Covered Aug 27 2026 streams: 105 new cs.LG submissions out of 308 entries, 7 new stat.ML submissions out of 41, and 5 new cs.DB submissions out of 10; themes in post-training, optimizer geometry, constrained-learning theory, relational deep learning, LLM provenance, vector-search reliability, and agent memory. Suppress repeat daily broad stream summary."}
+{"date_delivered":"2026-08-27","type":"announcement","title":"VLDB 2026 conference program pre-conference watch","authors_or_org":"VLDB 2026","url":"https://vldb.org/2026/program.html","memory":"Venue Watch. Noted live VLDB 2026 Boston program for Aug 31-Sep 4 2026 and opening-session slot for chair updates plus Best Reviewer/AE and Best Paper Awards, but no stable winner list was found in current crawl. Suppress repeat pre-conference program-shell awareness; cover official awards/proceedings only when released."}
+{"date_delivered":"2026-08-27","type":"paper","title":"ICON Decomposition: Multivariate Concept-Level Explanations of Deep Representations for Model Auditing","authors_or_org":"Roshan Prakash Rane, Marco Simnacher, Manuel Pfeuffer, Marc-Andre Schulz, Nys Tjade Siegel, Maximilian Dreyer, Frederik Pahde, Wojciech Samek, Sonja Greven, Kerstin Ritter","url":"https://arxiv.org/abs/2608.26083","memory":"Worth Watching. Covered multivariate concept-level representation auditing method that attributes layer variance to concepts after accounting for other concepts and outcome, validating shortcut explanations via retraining/OOD tests. Suppress future arXiv/code/venue reposts unless selected for Top 5 or materially expanded."}
+{"date_delivered":"2026-08-27","type":"dataset","title":"TraceML: An Empirical Analysis of Human-Agent Planning in Machine Learning Development","authors_or_org":"Jiarui Yan, Weiwei Sun, Sijie Li, Wenhan Li, Yiming Yang","url":"https://arxiv.org/abs/2608.26086","memory":"Worth Watching. Covered TraceML corpus/schema with 4,465 human Kaggle trajectories across 134 competitions plus paired agent trajectories, exposing narrow agent edit loops versus human planning diversity. Suppress future arXiv/HF/dataset/repost mentions unless corpus or analysis materially expands."}
+{"date_delivered":"2026-08-27","type":"software","title":"RCheck / Analyzing and Reducing Search Quality Differences in Vector Similarity Search","authors_or_org":"Sara Mahdizadeh Shahri, Martin Prammer, Jignesh M. Patel, Akshitha Sriraman","url":"https://arxiv.org/abs/2608.25185","memory":"Worth Watching. Covered runtime system for detecting and reducing per-query recall disparities in approximate nearest-neighbor/vector similarity search, evaluated in pgvector with adaptive search effort. Suppress future arXiv/code/venue mentions unless system or evaluation materially changes."}
+{"date_delivered":"2026-08-27","type":"benchmark","title":"Flower Hub: A Reproducible Benchmarking Platform for Federated Learning in Simulation and Deployment","authors_or_org":"Flower Labs and collaborators / Yan Gao et al.","url":"https://arxiv.org/abs/2608.25114","memory":"Worth Watching. Covered executable versioned federated-learning benchmarking platform spanning simulation and deployment with multi-domain tasks including financial tabular learning, system-aware reporting, pinned dependencies, and reusable applications. Suppress future arXiv/repo/platform mentions unless benchmark suite or deployment evidence materially expands."}
+{"date_delivered":"2026-08-27","type":"paper","title":"Common-Center Geometry and Certified Radial Reconstruction for Energy-Form Full Conformal Regions","authors_or_org":"Yiheng Feng","url":"https://arxiv.org/abs/2608.24964","memory":"Worth Watching. Covered conformal-prediction geometry note with Lean 4 formalization: energy-form FullCP comparison regions share common center under assumptions, yielding star-shaped regions and certified radial reconstruction envelopes. Suppress future arXiv/code/formalization reposts unless theory materially changes."}
+{"date_delivered":"2026-08-27","type":"software","title":"PolyMemDB: A Polyglot Database System for AI Memory Management","authors_or_org":"Yu Wang, Jiaheng Lu","url":"https://arxiv.org/abs/2608.25577","memory":"Worth Watching and cs.DB item. Covered demo-style polyglot database for AI memory management using graph, vector, probability, and spatiotemporal data plus temporal-decay semiring aggregation and provenance for factual conflict resolution. Suppress future arXiv/demo/tool mentions unless system or evaluation materially expands."}
+```

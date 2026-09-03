@@ -1,0 +1,101 @@
+## Section 1: Top 5 Papers
+
+1. **Exact Limits of Random Projections for Preserving Geometry: Distance Recovery, Nearest-Neighbor Rankings, and Covariance Shape in Gaussian Models**  
+   **Authors:** Piyush Sao  
+   **Venue/source:** arXiv cs.LG / math.PR / math.ST  
+   **Release date:** September 3, 2026  
+   **Link:** arXiv listing. ([arxiv.org](https://arxiv.org/list/cs.LG/new))  
+   A very useful corrective to over-casual use of Johnson–Lindenstrauss intuition. The paper asks not whether projected distances satisfy relative-error bounds, but whether the original *geometric information* is recoverable from a sketch. In isotropic Gaussian models it diagonalizes the optimal recovery operator and shows singular values decay roughly as \((m/d)^{k/2}\), implying poor recovery of higher-order distance features when \(m \ll d\). The nearest-neighbor and Kendall-rank consequences are particularly relevant to embedding evaluation, vector search, table embeddings, and representation diagnostics.  
+   **Why you should care:** It gives a principled reason that “distance preserved enough” can still mean “semantically/structurally unrecoverable.”
+
+2. **A Power Law in Logarithm’s Clothing: On the Scalability of Graph-Based Vector Search**  
+   **Authors:** Sajad Faghfoor Maghrebi, Navid Eslami, Niv Dayan  
+   **Venue/source:** arXiv cs.DB / cs.IR / cs.LG  
+   **Release date:** September 3, 2026  
+   **Link:** arXiv listing. ([arxiv.org](https://arxiv.org/list/cs.DB/new))  
+   This is one of the more important recent vector-database theory/measurement papers. It challenges the folk claim that HNSW/Vamana-style graph ANN search is effectively polylogarithmic at fixed recall. The authors find a scale-dependent regime: while \(N\) is small relative to intrinsic dimensionality, search cost follows a sublinear power law \(N^c\); only after the dataset resolves its distribution does growth slow toward subpolynomial/polylog-like behavior. They connect the phenomenon to intrinsic dimensionality growth and derive predictive models for recall/index-configuration tradeoffs.  
+   **Why you should care:** It reframes vector-search scaling laws around intrinsic dimension, not just \(N\), with direct consequences for data-lake and RAG system design.
+
+3. **The Dynamics of Continuous Mixture Collapse in Language Models**  
+   **Authors:** Ali Backour  
+   **Venue/source:** arXiv cs.LG / cs.CL  
+   **Release date:** September 3, 2026  
+   **Link:** arXiv listing. ([arxiv.org](https://arxiv.org/list/cs.LG/new))  
+   Continuous-state reasoning schemes often hope to preserve weighted mixtures of possible latent thoughts instead of committing to one token trajectory. This paper studies why pretrained LMs tend not to preserve those mixtures. It separates architectural distortion, training-amplified geometry distortion, and autoregressive softmax-feedback dynamics. The key result is a contraction/amplification threshold: even if a transformer transports mixtures linearly, the readout-and-feedback loop can force components either to collapse together or winner-take-all. The many-component extension argues exact preservation may require context-dependent corrections whose dimension scales with mixture complexity.  
+   **Why you should care:** It attacks a core assumption behind latent reasoning, soft CoT, and continuous scratchpad methods.
+
+4. **Source Distribution Estimation by Posterior Averaging**  
+   **Authors:** Trung-Dung Hoang, Lisa M. Koch  
+   **Venue/source:** arXiv cs.LG  
+   **Release date:** September 3, 2026  
+   **Link:** arXiv listing. ([arxiv.org](https://arxiv.org/list/cs.LG/new))  
+   The paper studies source distribution estimation: infer a distribution over simulator parameters whose push-forward matches observed real data. Instead of optimizing against a fixed likelihood surrogate trained from one proposal prior, the method alternates: train an amortized posterior on fresh simulations from the current source estimate, then refit the source to the posterior averaged over observations. The formulation is essentially an EM loop for implicit simulators, with separate-flow and shared conditional-flow parameterizations. Results on benchmark simulators, especially Lotka–Volterra under broad/misspecified priors, suggest fixed-surrogate methods fail where simulator coverage is poor.  
+   **Why you should care:** It is a clean simulation-based inference idea for aligning generative simulators to real observational distributions without trusting a stale surrogate.
+
+5. **What Is Worth Representing? Representational Empowerment for Continual Model Construction**  
+   **Authors:** Fei Dai, Hanqi Zhou, Alison Gopnik, Charley Wu  
+   **Venue/source:** arXiv cs.LG / cs.AI  
+   **Release date:** September 3, 2026  
+   **Link:** arXiv listing. ([arxiv.org](https://arxiv.org/list/cs.LG/new))  
+   This paper asks a deeper representation-learning question: not how to estimate the right latent structure, but how an agent decides which reusable representational elements deserve to exist. It introduces Representational Empowerment, scoring candidate abstractions by how much they expand future modeling and planning capacity. The evidence spans a human causal-learning task, simulations showing RepEmp-guided construction improves sufficient structure recovery and transfer, and an LLM-augmented curator that builds compact symbolic libraries in open-vocabulary planning. The conceptual bridge between causal abstraction, library learning, and bounded-resource model construction is the interesting part.  
+   **Why you should care:** It suggests an objective for representation acquisition that is neither pure information gain nor pure downstream reward.
+
+## Section 2: Venue Watch
+
+- **arXiv daily stream, September 3, 2026.** The cs.LG page lists **83 new submissions** out of 278 total entries, stat.ML lists **9 new submissions** out of 34 total, and cs.DB lists **6 new database submissions** out of 12 total. The day’s strongest clusters are: representation geometry and latent-reasoning failure; vector-search/index scaling; Bayesian and delayed-bandit theory; simulator/source-distribution inference; agentic database memory/versioning; and high-stakes multimodal benchmarks. The overall signal is unusually aligned with Adam’s interests: several papers are not just application benchmarks but attempts to measure what information is actually retained, recoverable, or operationally useful. ([arxiv.org](https://arxiv.org/list/cs.LG/new))
+
+- **TMLR September 2026 accepted-paper stream, expanded beyond the September 2 opening snapshot.** Newly visible September items include backdoor attacks on ASR, boundary-consistent GNNs for topological flux prediction, synthetic-supervision plus Mamba-based neural algorithmic reasoning for complex event detection, a reproducibility study of RegressionMSR, longitudinal LLM evaluation, open-vocabulary compositional neuron-alignment explanations, prototype-guided contrastive semantic embeddings, doubly robust private policy selection, concept bottleneck modeling, and dynamic graphs viewed through a time-series lens. The batch is broad, but the notable methodological center is evaluation/diagnostics: explanations, robustness, reproducibility, longitudinal evaluation, private selection, and structure-aware representation learning. ([jmlr.org](https://jmlr.org/tmlr/papers/))
+
+- **VLDB 2026 live program, September 3–4 activity.** Awards and the broad program were already covered previously, so no repetition here. The current live schedule is still worth noting because September 3 concentrates several Adam-relevant sessions: caching/memory/storage, ML pipeline management, LLMs for SQL and data preparation, privacy-preserving analytics, transaction management, lakehouse/open table formats, differential privacy, data agents, agentic memory, vector-database query processing, and structured-data foundation-model tutorials. Friday’s workshop block adds TaDA, VecDB, DASHSys, Agents+Graphs, and related data/AI systems venues. ([vldb.org](https://vldb.org/2026/program.html))
+
+## Section 3: Emerging Trends
+
+- **“Recoverability” is becoming a unifying evaluation criterion.** Random projections, continuous mixtures, parametric KG memories, vector indexes, and table/LLM embeddings are all being judged by whether the downstream object can actually be recovered—not merely whether a proxy metric is preserved.
+
+- **Structured-data systems are converging with agent infrastructure.** Git-like database branching, in-browser SQL with MVCC, agentic memory stores, context assembly, provenance, and transaction semantics are no longer side projects; they are becoming the systems substrate for data agents.
+
+- **Simulation and synthetic data work is shifting from generation to calibration.** The strongest new simulator papers ask whether the induced distribution matches real observations under push-forward constraints, posterior averaging, or calibrated schedules, rather than simply producing plausible samples.
+
+- **Vector-search theory is catching up to deployment scale.** Recent work is moving from one-size benchmark recall curves to scaling laws conditioned on intrinsic dimensionality, data growth, deletion/update behavior, and per-query reliability.
+
+- **Representation-learning papers are becoming more skeptical of apparent structure.** Several recent items attack measurement invariance, mixture preservation, linear-sketch recovery, and symbolic/linguistic readability—useful pressure against overinterpreting clean-looking embeddings.
+
+## Section 4: Worth Watching
+
+- **Zeta-Lite: A Concurrent, Branchable In-Browser SQL Database for Agentic Memory.** A WebAssembly SQL engine with asynchronous MVCC, overlapping snapshot-isolated transactions on one thread, copy-on-write database branching, PostgreSQL-like surface features, HNSW vector search, SQL/PGQ graph queries, and OPFS durability. Worth tracking as client-side durable memory for browser agents. ([arxiv.org](https://arxiv.org/list/cs.DB/new))
+
+- **Git4Data: Database-Native Version Control for AI Agents.** Adds Git-style snapshot, branch, diff, and merge operations through SQL extensions, implemented in MatrixOne with immutable object storage and MVCC. The BranchBench result against DoltDB is less important than the framing: relational databases as auditable branching workspaces for agents. ([arxiv.org](https://arxiv.org/list/cs.DB/new))
+
+- **Poisoning Attacks on the PGM-index.** Shows that adversarial insertions can inflate the learned PGM-index segment count by up to 120× and transfer to other PLA-based learned indexes. This is a useful robustness warning for “optimal” learned data structures. ([arxiv.org](https://arxiv.org/list/cs.DB/new))
+
+- **DocHop: Benchmarking Out-of-domain Multi-hop Reasoning in Information-Dense Documents.** An ICML 2026 benchmark with 2,074 generated examples requiring textual narrative constraints to select and aggregate chart evidence; best model reportedly reaches 62.83% versus >90% human accuracy. This looks useful for table/chart/document reasoning evaluation. ([arxiv.org](https://arxiv.org/list/cs.LG/new))
+
+- **HyperMC: Multi-Fidelity Hyperparameter Tuning for Stochastic Gradient MCMC.** Uses Hyperband-style allocation plus kernel Stein discrepancy to tune SGMCMC without acceptance-rate heuristics, with applications to logistic regression, probabilistic matrix factorization, and Bayesian neural nets. Good practical Bayesian-methods artifact to monitor. ([arxiv.org](https://arxiv.org/list/stat.ML/new))
+
+## Section 5: Discord Highlights
+
+**Sep 3, 2026 brief — Top 5 papers**
+
+1. **Exact Limits of Random Projections for Preserving Geometry** — JL-style distance preservation can still destroy recoverable geometry.  
+2. **A Power Law in Logarithm’s Clothing** — graph ANN search scales by intrinsic-dimension regimes, not simple polylogs.  
+3. **The Dynamics of Continuous Mixture Collapse in Language Models** — latent mixture reasoning can collapse through readout-feedback dynamics.  
+4. **Source Distribution Estimation by Posterior Averaging** — EM-style simulator calibration via fresh posterior averaging.  
+5. **What Is Worth Representing?** — representational empowerment as an objective for reusable abstraction libraries.  
+
+Full brief: <link inserted by workflow>
+
+```delivered_items_jsonl
+{"date_delivered":"2026-09-03","type":"paper","title":"Exact Limits of Random Projections for Preserving Geometry: Distance Recovery, Nearest-Neighbor Rankings, and Covariance Shape in Gaussian Models","authors_or_org":"Piyush Sao","url":"https://arxiv.org/abs/2609.02155","memory":"Top 5 paper. Covered Sep 3 2026 arXiv paper deriving exact recoverability limits for random projections in Gaussian models, including distance-feature recovery operators, nearest-neighbor/Kendall consequences, and covariance-shape implications. Suppress future arXiv, code, venue, or repost versions unless theory materially changes."}
+{"date_delivered":"2026-09-03","type":"paper","title":"A Power Law in Logarithm's Clothing: On the Scalability of Graph-Based Vector Search","authors_or_org":"Sajad Faghfoor Maghrebi, Navid Eslami, Niv Dayan","url":"https://arxiv.org/abs/2609.02143","memory":"Top 5 paper and cs.DB item. Covered Sep 3 2026 arXiv paper challenging polylog folklore for HNSW/Vamana-style graph ANN search, proposing sublinear power-law regime governed by intrinsic dimensionality and eventual subpolynomial transition. Suppress future arXiv/code/venue/repost mentions unless scaling theory or evidence materially changes."}
+{"date_delivered":"2026-09-03","type":"paper","title":"The Dynamics of Continuous Mixture Collapse in Language Models","authors_or_org":"Ali Backour","url":"https://arxiv.org/abs/2609.02049","memory":"Top 5 paper. Covered Sep 3 2026 arXiv paper analyzing why continuous latent-state mixtures in LMs collapse or amplify under transformer geometry, softmax readout, and autoregressive feedback; relevant to latent reasoning and continuous scratchpads. Suppress future versions unless theory or experiments materially expand."}
+{"date_delivered":"2026-09-03","type":"paper","title":"Source Distribution Estimation by Posterior Averaging","authors_or_org":"Trung-Dung Hoang, Lisa M. Koch","url":"https://arxiv.org/abs/2609.02622","memory":"Top 5 paper. Covered Sep 3 2026 arXiv paper on source distribution estimation for simulators via EM-like amortized posterior averaging over fresh simulations, with separate and shared flow parameterizations and Lotka-Volterra evidence. Suppress future arXiv/code/venue mentions unless method or empirical scope materially changes."}
+{"date_delivered":"2026-09-03","type":"paper","title":"What Is Worth Representing? Representational Empowerment for Continual Model Construction","authors_or_org":"Fei Dai, Hanqi Zhou, Alison Gopnik, Charley Wu","url":"https://arxiv.org/abs/2609.02322","memory":"Top 5 paper. Covered Sep 3 2026 arXiv paper proposing Representational Empowerment as a criterion for selecting reusable abstractions in continual model construction, with human causal-learning, simulation, and LLM curator-actor planning evidence. Suppress future versions unless objective, theory, or evidence materially expands."}
+{"date_delivered":"2026-09-03","type":"proceedings","title":"arXiv cs.LG/stat.ML/cs.DB new-submission stream for September 3 2026","authors_or_org":"arXiv cs.LG, stat.ML, cs.DB","url":"https://arxiv.org/list/cs.LG/new","memory":"Venue Watch. Covered Sep 3 2026 arXiv streams: cs.LG 83 new submissions out of 278 entries, stat.ML 9 new out of 34, and cs.DB 6 new out of 12; themes in representation recoverability, vector-search scaling, Bayesian/delayed bandits, simulator inference, agentic database memory/versioning, and multimodal benchmarks. Suppress repeat daily stream summary."}
+{"date_delivered":"2026-09-03","type":"proceedings","title":"TMLR September 2026 accepted papers incremental update as of September 3","authors_or_org":"Transactions on Machine Learning Research","url":"https://jmlr.org/tmlr/papers/","memory":"Venue Watch. Covered visible Sep 3 TMLR September accepted-paper additions beyond the Sep 2 opening snapshot, including GhostWord, Boundary-Consistent GNNs, Scaling Online Complex Event Detection with Synthetic Supervision and Mamba-Based Neural Algorithmic Reasoning, RegressionMSR reproducibility, Longitudinal Evaluation of LLMs, Open Vocabulary Compositional Explanations for Neuron Alignment, Structuring Semantic Embeddings for Principle Evaluation, private DR policy selection, concept bottleneck models, and dynamic graphs as time series. Suppress repeat Sep 3 incremental snapshot."}
+{"date_delivered":"2026-09-03","type":"announcement","title":"VLDB 2026 live September 3-4 program activity snapshot","authors_or_org":"VLDB 2026","url":"https://vldb.org/2026/program.html","memory":"Venue Watch. Covered only the current live-program concentration on Sep 3-4, not repeating prior awards or broad program: sessions/tutorials in agentic memory, data agents, LLMs for SQL/data preparation, ML pipeline management, privacy, transactions, lakehouse/open table formats, vector databases, structured-data foundation models, plus Friday TaDA, VecDB, DASHSys and Agents+Graphs workshops. Suppress repeat live-program reminders unless new awards/proceedings/artifacts appear."}
+{"date_delivered":"2026-09-03","type":"software","title":"Zeta-Lite: A Concurrent, Branchable In-Browser SQL Database for Agentic Memory","authors_or_org":"Gene Zhang","url":"https://arxiv.org/abs/2609.01818","memory":"Worth Watching. Covered WebAssembly/browser SQL database with asynchronous MVCC, overlapping snapshot-isolated transactions, copy-on-write database branching, PostgreSQL-like surface, HNSW vector search, SQL/PGQ graph queries, and OPFS durability for agentic memory. Suppress future arXiv/repo/tool mentions unless artifact or evaluation materially changes."}
+{"date_delivered":"2026-09-03","type":"software","title":"Git4Data: Database-Native Version Control for AI Agents","authors_or_org":"Hongshen Gou, Zuyu Zhang, Yuze Sun, Peng Xu, Feng Tian, Long Wang, Jianguo Wang","url":"https://arxiv.org/abs/2609.02106","memory":"Worth Watching and cs.DB item. Covered database-native Git-style snapshot/branch/diff/merge via SQL extensions, implemented in MatrixOne with immutable object storage and MVCC, evaluated on BranchBench agentic branching workloads. Suppress future arXiv/repo/venue mentions unless system or benchmark materially expands."}
+{"date_delivered":"2026-09-03","type":"paper","title":"Poisoning Attacks on the PGM-index","authors_or_org":"Atsuki Sato, Martin Aumüller, Yusuke Matsui","url":"https://arxiv.org/abs/2609.02328","memory":"Worth Watching and cs.DB item. Covered adversarial insertions into PGM learned index causing up to 120x segment/index-size inflation, with instance-dependent upper bounds and transfer to other PLA-based learned indexes. Suppress future arXiv/code/venue mentions unless attack/defense theory or evidence materially changes."}
+{"date_delivered":"2026-09-03","type":"benchmark","title":"DocHop: Benchmarking Out-of-domain Multi-hop Reasoning in Information-Dense Documents","authors_or_org":"Zhuoran Yu, Le Thien Phuc Nguyen, Jaden Park, Xinyi Gu, Zexue He, Soochahn Lee, Rogerio Feris, Yong Jae Lee","url":"https://arxiv.org/abs/2609.02059","memory":"Worth Watching benchmark. Covered ICML 2026 benchmark of 2074 examples requiring narrative-grounded multi-hop chart/document reasoning, with large human-model gap. Suppress future arXiv/ICML/repo/dataset mentions unless benchmark materially expands."}
+{"date_delivered":"2026-09-03","type":"software","title":"HyperMC: Multi-Fidelity Hyperparameter Tuning for Stochastic Gradient MCMC","authors_or_org":"Ming Tan, Xiyun Jiao","url":"https://arxiv.org/abs/2609.02138","memory":"Worth Watching. Covered multi-fidelity SGMCMC hyperparameter tuning using Hyperband-style successive halving and kernel Stein discrepancy, plus Robust HyperMC for stable initialization/refinement. Suppress future arXiv/code/venue mentions unless method, package, or empirical evidence materially changes."}
+```

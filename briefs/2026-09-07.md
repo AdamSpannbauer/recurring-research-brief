@@ -1,0 +1,100 @@
+## Section 1: Top 5 Papers
+
+1. **Corporate-Family Resolution Is Not a String-Matching Problem: A Public Benchmark Stratified by Name Visibility**  
+   **Authors:** Harshit Gupta  
+   **Venue/source:** arXiv cs.DB/cs.IR/cs.LG  
+   **Release date:** September 7, 2026  
+   **Link:** ([arxiv.org](https://arxiv.org/list/cs.DB/new))  
+   This is the most directly useful item this cycle for entity resolution. It argues that corporate-family resolution is not ordinary duplicate/entity matching: many true links connect different legal entities whose relationship is absent from either record’s surface string. The paper introduces **CorpFam**, a benchmark of 54,864 candidate pairs over 10,307 corporate families from 6.6M+ U.S. federal award records, stratified by name visibility. The key result is brutal: existing matchers and blocking schemes fail on “invisible” links, with the strongest matcher recovering only about 4% and the union of blocking methods about 6.8%.  
+   **Why you should care:** It reframes a large class of ER failures as candidate-generation/evidence-retrieval failures, not ranking failures.
+
+2. **SharedSAE: One Feature Dictionary Across Language Models**  
+   **Authors:** Daniil Ognev, Célian Vasson, Lijie Hu, Kentaro Inui, Benjamin Heinzerling  
+   **Venue/source:** arXiv cs.LG/cs.CL  
+   **Release date:** September 7, 2026  
+   **Link:** ([arxiv.org](https://arxiv.org/list/cs.LG/new))  
+   SharedSAE tackles a major practical bottleneck in sparse-autoencoder interpretability: every model typically gets its own SAE and latent-labeling pass. The paper proposes a shared dictionary with model-specific encoder/decoder components, preserving activation magnitudes and using model dropout so inference can run on a single model. On four 1B-scale base LMs from different families/tokenizers, the shared dictionary retains 96.6% of dedicated-SAE explained variance and gives substantially stronger cross-model latent correlations than post-hoc alignment of separate SAEs. New models can then be adapted into the frozen shared dictionary.  
+   **Why you should care:** If robust, this is a step toward reusable interpretability ontologies rather than one-off model dissections.
+
+3. **An Analysis of Self-supervised Pre-training with Dependent Samples**  
+   **Authors:** Maximilian Fleissner, Debarghya Ghoshdastidar, Samory Kpotufe  
+   **Venue/source:** arXiv stat.ML/cs.LG  
+   **Release date:** September 7, 2026  
+   **Link:** ([arxiv.org](https://arxiv.org/list/stat.ML/new))  
+   The paper addresses a small but pervasive theoretical mismatch in self-supervised learning: augmentations of the same datapoint are dependent, yet many analyses avoid this dependence by treating smaller independent subsets. In estimating an invariant subspace, the authors show that naively pooling dependent augmentations is never worse than partitioning into independent sets under their bounds, and can be faster for masking/noise-injection augmentations in shallow-network settings. The contribution is not a new SSL algorithm but a justification for a standard engineering practice: exploiting many correlated views of each example.  
+   **Why you should care:** It helps close a theory-practice gap in SSL and representation learning, especially for synthetic augmentations and masked objectives.
+
+4. **Conformity Breaks Conformal Prediction**  
+   **Authors:** Yibo Hu, Hanyu Su  
+   **Venue/source:** arXiv cs.LG/cs.CL  
+   **Release date:** September 7, 2026  
+   **Link:** ([arxiv.org](https://arxiv.org/list/cs.LG/new))  
+   This paper identifies a failure mode for conformal certificates in multi-agent or peer-influenced LLM systems. Calibration can hold when a model answers alone but fail when peers unanimously assert a wrong answer, because the score mechanism changes even though the question distribution does not. In experiments, nominal 90% coverage drops to 74% under unanimous-wrong peers, and targeted low-confidence subsets fall much further. The important point is conceptual: conformity creates a mechanism shift that ordinary distribution-shift checks may miss, and escalation policies can become overconfident exactly when they should defer.  
+   **Why you should care:** It is a sharp warning for uncertainty, abstention, and conformal wrappers around social, routed, or multi-agent LLM systems.
+
+5. **Interpretability for Turing Machines**  
+   **Authors:** Billy Snikkers, Rumi Salazar, Daniel Murfet, Will Troiani  
+   **Venue/source:** arXiv cs.LG/cs.FL/stat.ML  
+   **Release date:** September 7, 2026  
+   **Link:** ([arxiv.org](https://arxiv.org/list/cs.LG/new))  
+   A 75-page bridge between mechanistic interpretability and formal computation. The authors apply susceptibility-style probes—local loss-landscape measurements originally developed for neural networks—to noisy Turing-machine learning problems. They prove that algorithmic symmetries and path separation induce permutation symmetries and low-rank blocks in the susceptibility matrix, then show empirically that DFA algorithmic features can be recovered by PCA and clustering in susceptibility space. The value is less in immediate tooling than in giving interpretability a clean toy universe where “algorithmic structure” is mathematically explicit.  
+   **Why you should care:** It may become a useful testbed for distinguishing genuine algorithm recovery from visually convincing circuit stories.
+
+## Section 2: Venue Watch
+
+- **arXiv Sep. 7 ML/stat/DB stream.** The Monday arXiv drop was substantial: cs.LG listed 79 new submissions out of 228 total entries; stat.ML listed 4 new submissions and 22 total entries; cs.DB listed 4 new submissions and 8 total entries. The strongest clusters were interpretability and representation diagnostics, SSL theory, LLM-agent reliability, entity/corporate-family resolution, multi-model query optimization, privacy-preserving recommendation, and domain-specific synthetic/scientific data generation. The most relevant database item was **CorpFam**, which makes the case that high-recall corporate-family resolution needs retrieval and external evidence rather than string-centric blocking. Other useful signals include multi-model query optimization across relational/document/graph stores and semantic evidence schemas for genetics. ([arxiv.org](https://arxiv.org/list/cs.LG/new))
+
+- **TMLR September 2026 incremental accepted-paper stream.** Since the Sep. 4 snapshot, the TMLR page has added a compact but diverse September batch. New visible items include literature-database knowledge profiling, adaptive modality acquisition, tuning-free video coherence, policy gradients under cumulative prospect theory, behavior-first multi-intention inverse RL, synchronization-based attention, decentralized multi-agent world models, psychophysical comparison of neuron vs dictionary representations, OOD detection, multi-layer SSM expressivity, active reward learning from preferences, MDL/singular-learning-theory complexity, and a millisecond-resolution network dataset for time-series foundation models. This is a notably representation/agent/control-heavy batch rather than a tabular batch. ([jmlr.org](https://jmlr.org/tmlr/papers/))
+
+- **INFORMS and statistics venue status.** No new issue worth re-covering appeared in the watched INFORMS/JRSSB/JMLR streams relative to the already-delivered August/early-September snapshots. Management Science remains on Volume 72 Issue 8, Operations Research remains on Volume 74 Issue 4, and JRSSB still shows Volume 88 Issue 3 as the current issue; these have already been summarized in prior briefings. ([pubsonline.informs.org](https://pubsonline.informs.org/toc/mnsc/current))
+
+## Section 3: Emerging Trends
+
+- **ER is splitting into “matching” vs “evidence retrieval.”** CorpFam is the cleanest new example: for economically meaningful identity links, surface similarity is often the wrong bottleneck. Expect more ER work to focus on external evidence, provenance, candidate generation, and retrieval coverage certificates.
+
+- **Interpretability is moving toward reusable coordinate systems.** SharedSAE, TMLR’s neuron-vs-dictionary comparison, and Turing-machine susceptibilities all point at the same meta-question: when is an explanatory basis stable enough to compare across models, architectures, tasks, or formal computational substrates?
+
+- **Reliability guarantees are failing under interaction.** Conformal prediction under peer pressure, speculative uncertainty gates for agents, and TMLR’s growing stream of agent/world-model evaluation papers suggest that static calibration is no longer the right abstraction once systems deliberate, route, collaborate, or are socially influenced.
+
+- **Self-supervision theory is catching up to augmentation practice.** The dependent-sample SSL paper gives formal support for pooling correlated augmentations. That matters beyond vision: tabular masking, synthetic views, perturbation-based SSL, and graph augmentations all rely on similarly dependent training signals.
+
+- **Data systems for AI agents remain active, but the center of gravity is shifting.** Recent DB work is less about one-off LLM wrappers and more about durable primitives: evidence models, multi-model optimization, context/memory storage, provenance, versioning, and high-recall retrieval.
+
+## Section 4: Worth Watching
+
+- **Scale-QLoRA: Code-Invariant Adapter Merging for Native 4-bit Microscaling LLMs.** A deployment-oriented PEFT paper arguing that naïvely merging LoRA into native 4-bit microscaling checkpoints can erase adaptation because the code plane gets re-derived. Scale-QLoRA adapts the scale field while freezing quantized codes, enabling bit-exact merges, rollback, deduplication, and fast task swaps. ([arxiv.org](https://arxiv.org/list/cs.LG/new))
+
+- **BeaconKV: Key-Value Cache Compression Guided by Beacon Queries.** Training-free KV-cache compression for long reasoning traces, motivated by “thought revisiting” tokens that re-attend to distant context. The beacon-query idea is worth tracking for long-context inference systems and agent memory compression. ([arxiv.org](https://arxiv.org/list/cs.LG/new))
+
+- **Reducing the Cross-Model Tax: Query Optimization over Multi-Model Data.** MM-quecat generalizes predicate pushdown, dependent joins, and nonredundant query construction across PostgreSQL, MongoDB, Neo4j, and heterogeneous combinations, reporting up to two-order latency reductions. Relevant to data-agent backends that must traverse relational, document, graph, and vector stores. ([arxiv.org](https://arxiv.org/list/cs.DB/new))
+
+- **Bridging the High-Frequency Data Gap: A Millisecond-Resolution Network Dataset for Advancing Time Series Foundation Models.** Newly visible TMLR September dataset item. The title alone suggests a useful stress test for time-series foundation models under high-frequency network data, which is a regime where many current TSFMs are under-evaluated. ([jmlr.org](https://jmlr.org/tmlr/papers/))
+
+- **Multi-Dimensional Knowledge Profiling with Large-Scale Literature Database and Hierarchical Retrieval.** TMLR September item worth suppressing for future repeats: likely adjacent to Modelpedia/AskChem-style structured scientific-literature infrastructure, with hierarchical retrieval over a large literature database. ([jmlr.org](https://jmlr.org/tmlr/papers/))
+
+## Section 5: Discord Highlights
+
+**Sep 7 — Research brief highlights**
+
+1. **Corporate-Family Resolution Is Not a String-Matching Problem** — New CorpFam benchmark shows corporate-family ER fails mainly at candidate generation, not matching.
+2. **SharedSAE: One Feature Dictionary Across Language Models** — Shared sparse-feature dictionaries may make SAE interpretability reusable across model families.
+3. **An Analysis of Self-supervised Pre-training with Dependent Samples** — Theory supports pooling dependent augmentations instead of forcing independence.
+4. **Conformity Breaks Conformal Prediction** — Peer pressure in multi-agent LLM settings can invalidate conformal coverage without changing the question distribution.
+5. **Interpretability for Turing Machines** — Susceptibility probes recover algorithmic structure in formal machines, giving interpretability a cleaner testbed.
+
+Full brief: <link inserted by workflow>
+
+```delivered_items_jsonl
+{"date_delivered":"2026-09-07","type":"paper","title":"Corporate-Family Resolution Is Not a String-Matching Problem: A Public Benchmark Stratified by Name Visibility","authors_or_org":"Harshit Gupta","url":"https://arxiv.org/abs/2609.04269","memory":"Top 5 paper. Covered CorpFam benchmark for corporate-family resolution, 54,864 candidate pairs over 10,307 families from U.S. federal award records, stratified by name visibility; key claim that invisible corporate-family links are retrieval/candidate-generation failures rather than matching/ranking failures. Suppress arXiv, GitHub, benchmark, venue, and repost versions unless benchmark or results materially expand."}
+{"date_delivered":"2026-09-07","type":"paper","title":"SharedSAE: One Feature Dictionary Across Language Models","authors_or_org":"Daniil Ognev, Célian Vasson, Lijie Hu, Kentaro Inui, Benjamin Heinzerling","url":"https://arxiv.org/abs/2609.04344","memory":"Top 5 paper. Covered shared sparse-autoencoder dictionary with model-specific encoders/decoders across four 1B-scale language models, preserving activation magnitudes, supporting single-model inference, and transferring latent descriptions. Suppress arXiv, code, SAE resource, social, and venue versions unless dictionary release or empirical scope materially changes."}
+{"date_delivered":"2026-09-07","type":"paper","title":"An Analysis of Self-supervised Pre-training with Dependent Samples","authors_or_org":"Maximilian Fleissner, Debarghya Ghoshdastidar, Samory Kpotufe","url":"https://arxiv.org/abs/2609.05031","memory":"Top 5 paper. Covered theory showing that pooling dependent augmentations in self-supervised pretraining can be no worse than partitioning into independent subsets and can yield faster rates for masking/noise-injection settings. Suppress future arXiv, stat.ML, code, and venue versions unless theory materially expands."}
+{"date_delivered":"2026-09-07","type":"paper","title":"Conformity Breaks Conformal Prediction","authors_or_org":"Yibo Hu, Hanyu Su","url":"https://arxiv.org/abs/2609.04445","memory":"Top 5 paper. Covered score-mechanism shift in multi-agent or peer-influenced LLM systems causing conformal prediction coverage to fail under unanimous-wrong peers; nominal 90% coverage drops to 74% and targeted subgroups fail more severely. Suppress arXiv, code, social, and venue reposts unless calibration framework or evidence materially changes."}
+{"date_delivered":"2026-09-07","type":"paper","title":"Interpretability for Turing Machines","authors_or_org":"Billy Snikkers, Rumi Salazar, Daniel Murfet, Will Troiani","url":"https://arxiv.org/abs/2609.04661","memory":"Top 5 paper. Covered susceptibility-based interpretability for noisy Turing machines and DFAs, proving that algorithmic symmetries/path separation induce permutation symmetries and low-rank blocks in susceptibility matrices, with interactive companion and Zenodo code/data. Suppress arXiv, companion-site, code, and venue versions unless theory or benchmark materially expands."}
+{"date_delivered":"2026-09-07","type":"proceedings","title":"arXiv cs.LG/stat.ML/cs.DB new-submission stream for September 7 2026","authors_or_org":"arXiv cs.LG, stat.ML, cs.DB","url":"https://arxiv.org/list/cs.LG/new","memory":"Venue Watch. Covered Sep 7 2026 arXiv streams: cs.LG 79 new submissions out of 228 entries, stat.ML 4 new submissions out of 22 entries, and cs.DB 4 new submissions out of 8 entries; themes included ER/corporate-family resolution, reusable interpretability bases, SSL theory, conformal failure under interaction, multi-model query optimization, privacy-preserving recommendation, and AI-ready evidence schemas. Suppress repeat broad daily stream summary."}
+{"date_delivered":"2026-09-07","type":"proceedings","title":"TMLR September 2026 accepted papers incremental update as of September 7","authors_or_org":"Transactions on Machine Learning Research","url":"https://jmlr.org/tmlr/papers/","memory":"Venue Watch. Covered visible Sep 7 TMLR September top-of-page additions including Multi-Dimensional Knowledge Profiling, adaptive modality acquisition, ViDE, cumulative-prospect-theory policy gradients, behavior-first multi-intention IRL, synchronization-based attention, decentralized multi-agent world models, neuron-vs-dictionary interpretability basis comparison, OOD detection, SSM expressivity, active reward learning, MDL/singular-learning-theory complexity, and high-frequency network dataset for time-series FMs. Suppress repeat Sep 7 incremental snapshot."}
+{"date_delivered":"2026-09-07","type":"paper","title":"Scale-QLoRA: Code-Invariant Adapter Merging for Native 4-bit Microscaling LLMs","authors_or_org":"Tung-Ling Li, Jiale Huang, Lee-Chi Wang, Janaki Ram Gotei","url":"https://arxiv.org/abs/2609.04526","memory":"Worth Watching. Covered deployment-oriented PEFT method adapting scale fields while freezing native 4-bit microscaling code planes to make LoRA-style merges code-invariant and bit-exact. Suppress arXiv, code, social, and venue reposts unless implementation or empirical results materially change."}
+{"date_delivered":"2026-09-07","type":"software","title":"BeaconKV: Key-Value Cache Compression Guided by Beacon Queries for Efficient Large Reasoning Model Inference","authors_or_org":"Janghyeon Kim, Minsoo Kim, Kyuhong Shim, Jungwook Choi","url":"https://arxiv.org/abs/2609.04971","memory":"Worth Watching. Covered training-free KV-cache compression for long reasoning traces using beacon queries to anticipate thought-revisiting tokens and distant context reuse; reported memory and throughput gains. Suppress arXiv, ICML, GitHub, and social reposts unless compression method or evidence materially changes."}
+{"date_delivered":"2026-09-07","type":"paper","title":"Reducing the Cross-Model Tax: Query Optimization over Multi-Model Data","authors_or_org":"Jáchym Bártík, Filip Štrobl, Irena Holubová","url":"https://arxiv.org/abs/2609.05014","memory":"Worth Watching and cs.DB Venue Watch item. Covered MM-quecat mapping/capability-aware optimization across PostgreSQL, MongoDB, Neo4j, and heterogeneous combinations using model-aware predicate pushdown, dependent joins, and nonredundant query construction. Suppress arXiv, code, venue, and repost versions unless system or benchmark materially changes."}
+{"date_delivered":"2026-09-07","type":"dataset","title":"Bridging the High-Frequency Data Gap: A Millisecond-Resolution Network Dataset for Advancing Time Series Foundation Models","authors_or_org":"Subina Khanal, Seshu Tirupathi, Merim Dzaferagic, Marco Ruffini, Torben Bach Pedersen; TMLR","url":"https://jmlr.org/tmlr/papers/","memory":"Worth Watching TMLR September 2026 dataset/resource item. Covered as newly visible millisecond-resolution network dataset for evaluating time-series foundation models in high-frequency network-data regimes. Suppress TMLR/OpenReview/code reposts unless dataset artifact or results materially expand."}
+{"date_delivered":"2026-09-07","type":"resource","title":"Multi-Dimensional Knowledge Profiling with Large-Scale Literature Database and Hierarchical Retrieval","authors_or_org":"Zhucun Xue, Jiangning Zhang, Juntao Jiang, Jinzhuo Liu, Haoyang He, Teng Hu, Xiaobin Hu, Yong Liu, Shuicheng Yan; TMLR","url":"https://jmlr.org/tmlr/papers/","memory":"Worth Watching TMLR September 2026 resource item. Covered as literature-database knowledge profiling and hierarchical retrieval infrastructure, adjacent to Modelpedia/AskChem-style structured scientific-literature resources. Suppress TMLR/OpenReview/GitHub reposts unless resource, schema, or database materially expands."}
+```

@@ -1,0 +1,96 @@
+## Section 1: Top 5 Papers
+
+1. **World-Time Compute with Verified Code World Models**  
+   **Authors:** James Schwoebel, Ingrida Semenec, Jenia Rousseva, Marcos Ortiz, Collin Overbay, Christopher Klaus, Anderson Edmond, Manish Bhatt, Rome Thorstenson, Jessica Tsai, Martin G. Frasch  
+   **Venue/source/date:** arXiv, September 10, 2026  
+   **Link:** ([arxiv.org](https://arxiv.org/list/cs.LG/new))  
+   This is the strongest “synthetic environments as data engine” paper in today’s stream. The authors instantiate many verifiable symbolic world models from code templates, then train LMs on exactly labeled trajectories across these worlds—“world-time compute,” a training-time analogue of test-time compute. The key result is not just more synthetic data helps, but that **verified dynamics** appear to matter: corrupted-label controls lose the gain, and smaller models benefit most. The scope is symbolic state, not pixels, but the work is highly relevant to simulation-based pretraining, data-generating priors, and agent evaluation.  
+   **Why you should care:** It gives a concrete recipe for replacing scarce real task labels with executable, checkable synthetic worlds rather than LLM-generated pseudo-labels.
+
+2. **When Does Low-Bit Quantization Preserve the Decisions of Vector Search?**  
+   **Authors:** Wenxuan Xiao, Xu Cao  
+   **Venue/source/date:** arXiv cs.DB, September 10, 2026  
+   **Link:** ([arxiv.org](https://arxiv.org/list/cs.DB/new))  
+   This paper asks the right question about vector quantization: not “what is the average distortion?” but “when do ranking and graph-pruning decisions flip?” It derives a distribution-free comparison-flip decomposition using near-zero exact margins and calibrated residual tails, then connects the theory to Vamana neighbor selection and multiple quantization families including binary codes, RaBitQ, Lucene BBQ, and product quantizers. The empirical claim is that standardized exact margins predict ranking/pruning failures better than global rank correlation across learned, classical, and synthetic embeddings.  
+   **Why you should care:** It turns vector-index compression from a recall-after-the-fact problem into a certifiable decision-preservation problem.
+
+3. **A Dominant Diffuse Phase in the Sparse Autoencoder Phase Diagram**  
+   **Authors:** Alexis D. Plascencia  
+   **Venue/source/date:** arXiv, September 10, 2026  
+   **Link:** ([arxiv.org](https://arxiv.org/list/cs.LG/new))  
+   This is a useful corrective for the increasingly confident SAE literature. Following the MAIS-O43 synthetic-dictionary protocol, the paper finds neither full recovery nor the expected feature merges across thousands of Adam-trained fits. Instead, it finds a reproducible “diffuse phase”: low reconstruction error, but learned atoms remain far from true features and learned codes are much denser than ground truth. The important point is methodological: the phase diagram of **trained** SAEs may differ substantially from the phase diagram of the ideal sparse-coding objective.  
+   **Why you should care:** It reinforces the need to evaluate interpretability tools as trained optimization procedures, not just as objective functions with appealing optima.
+
+4. **What Fixed-Rollout pass@k Evaluations Can Identify**  
+   **Authors:** Pranav Singh, Prashant Singh  
+   **Venue/source/date:** arXiv stat.ML, September 10, 2026  
+   **Link:** ([arxiv.org](https://arxiv.org/list/cs.LG/new))  
+   This paper is a sharp statistical warning for inference-time scaling claims. In a pooled random-task conditional-binomial model, fixed-depth success counts identify only finitely many moments of the latent per-task success distribution. Therefore, direct pass@k is identified only for k no larger than the collected rollout count; extrapolated pass@k, tail exponents, and tail constants are not nonparametrically identified beyond that budget. The authors provide count-law-preserving constructions with incompatible extrapolations and identified intervals on public large-rollout data.  
+   **Why you should care:** It supplies a principled baseline for deciding when pass@k scaling curves are data-supported versus model-conditioned extrapolation.
+
+5. **Optimal Value Inference for Reinforcement Learning**  
+   **Authors:** Nan Lu, Ethan Lee, James M. Robins, David Simchi-Levi, Junwei Lu  
+   **Venue/source/date:** arXiv stat.ML, September 10, 2026  
+   **Link:** ([arxiv.org](https://arxiv.org/list/stat.ML/new))  
+   This paper targets offline inference for the optimal value in RL, deriving new nuisance functions as fixed points of a self-induced Bellman equation using a softmax approximation to the max Bellman operator. The estimator is debiased via Neyman orthogonality and shown asymptotically normal under diverging horizons, including time-varying behavior policies, given learnable nuisance rates. The examples—bike repositioning and AI agentic tool use—make the work unusually relevant to policy evaluation for operational agents rather than toy MDPs.  
+   **Why you should care:** It brings semiparametric inference discipline to optimal-value claims in settings where RL systems are deployed but randomized policy experimentation is limited.
+
+## Section 2: Venue Watch
+
+- **arXiv September 10 stream: unusually dense but uneven.** The cs.LG page lists **79 new submissions out of 252 total entries**, stat.ML lists **15 new submissions out of 42**, and cs.DB lists **3 new submissions out of 6**. The strongest clusters are: synthetic/verified training environments; evaluation identifiability; vector-search quantization; SAE and circuit training dynamics; optimizer geometry around Muon; tabular feature transformation; and database/agent correctness. This is a good day to scan selectively rather than broadly. ([arxiv.org](https://arxiv.org/list/cs.LG/new))
+
+- **TMLR September 2026 incremental additions.** Since the September 9 snapshot, the visible top of the TMLR page added **“Identifying Invariant Physical Dynamics Across Multiple Environments”** and **“Approaching the Harm of Gradient Attacks While Only Flipping Labels.”** The first is aligned with invariant representation learning for physical dynamics; the second belongs to the adversarial robustness/data-corruption thread. The rest of the visible September page still contains previously covered items such as sample-wise constrained learning, multi-user dueling bandits, DP synthetic data via APIs, ToolGuard, telemetry-aware routing, and diffusion-style smoothing. ([jmlr.org](https://www.jmlr.org/tmlr/papers/))
+
+- **VLDB 2026 Workshop Proceedings are now visible as a bounded release.** This is the new item worth tracking, distinct from the previously covered schedule snapshot. The proceedings page lists workshops across ADMS, AIDB, NOVAS, QDB, Agents+Graphs, BioDMS, CDMS, DASHSys, ADS/DATAI, QCDKM, TaDA, SCCP, and the PhD workshop. The most relevant concentration is TaDA: predictive query languages over relational databases, reusable LLM-synthesized tabular cleaning programs, localized imputation for text-rich tables, metadata-KG joinability, budgeted entity matching, column-type annotation failure diagnosis, tabular embedding reuse, PFN-based synthetic tabular generation, and transformation-search acceleration. DASHSys and ADS/DATAI continue the agentic-data-systems turn: data exploration, schema generation, governed document-to-artifact generation, data-lake QA agents, experience-guided text-to-SQL, demand-driven data preparation, and self-evolving data agents. ([vldb.org](https://www.vldb.org/2026/Workshops/vldb.html))
+
+## Section 3: Emerging Trends
+
+- **Evaluation is shifting from scalar scores to identifiability and certificates.** pass@k extrapolation, vector-search quantization, conformal view coverage, and data-agent failure audits all ask what a measurement can actually support under finite sampling or altered execution paths.
+
+- **Structured-data work is moving from model architecture to context, retrieval, and operationalization.** Recent tabular/relational papers increasingly focus on constructing the right context, discovering joinable evidence, compressing tables into usable embeddings, and enforcing schema/provenance constraints rather than only training another table transformer.
+
+- **Synthetic data is becoming more programmatic and less purely generative.** The strongest synthetic-data signals now involve verified simulators, executable worlds, PFN priors, LLM-synthesized cleaning/generation programs, and causal/profiled benchmark generators.
+
+- **Interpretability is becoming optimization-aware.** SAE failures, circuit removability under training trajectories, and representation-measurement invariance critiques all point to the same lesson: learned representations cannot be understood only through static decompositions.
+
+- **Database venues are rapidly absorbing agent infrastructure.** VLDB workshop activity now treats agents as workloads needing memory, branching, context assembly, semantic isolation, provenance, and executable database interfaces.
+
+## Section 4: Worth Watching
+
+- **Tensor Network Moral Graph Recovery of Discrete Probability Distributions** — a causal-graph recovery method using fully connected tensor networks with nuclear-norm-regularized bond corrections; worth tracking if the optimization behaves beyond small discrete systems. ([arxiv.org](https://arxiv.org/list/stat.ML/new))
+
+- **Hierarchical and Permutation-Invariant Feature Transformation Learning via Policy-Guided Embedding Search** — CIKM 2026 paper on tabular feature transformation search with hierarchy-aware, permutation-invariant embeddings and policy-guided multi-objective RL. ([arxiv.org](https://arxiv.org/list/cs.LG/new))
+
+- **CAST: Canonical Approximate Schur Tree for Approximate Cholesky on Graphs** — replaces dense Schur-complement cliques with unbiased random spanning-tree updates; relevant to graph SSL, diffusion estimation, ranking, and repeated Laplacian solves. ([arxiv.org](https://arxiv.org/list/cs.LG/new))
+
+- **Few Rows Tell Them Apart: Equivalence of Queries Mixing Set and Bag Semantics** — gives computable small-database bounds for SQL-style equivalence checking under mixed DISTINCT/bag semantics, potentially useful for LLM-generated SQL verification. ([arxiv.org](https://arxiv.org/list/cs.DB/new))
+
+- **MetroLLM-Bench** — a 955-case benchmark for LMs as structured-tool transit-kiosk runtimes, with deterministic terminal-state scoring and released harness/students; useful as an example of domain-specific agent evaluation with executable outputs. ([arxiv.org](https://arxiv.org/list/cs.LG/new))
+
+## Section 5: Discord Highlights
+
+**Sep 10 brief — Top 5 papers**
+
+1. **World-Time Compute with Verified Code World Models** — verified synthetic worlds as training-time compute for small-model generalization.  
+2. **When Does Low-Bit Quantization Preserve the Decisions of Vector Search?** — decision-level theory for compressed vector indexes.  
+3. **A Dominant Diffuse Phase in the Sparse Autoencoder Phase Diagram** — trained SAEs can reconstruct well while failing dictionary recovery.  
+4. **What Fixed-Rollout pass@k Evaluations Can Identify** — pass@k extrapolation is not nonparametrically identified beyond sampled rollouts.  
+5. **Optimal Value Inference for Reinforcement Learning** — debiased semiparametric inference for optimal RL value with agent-tool examples.  
+
+Full brief: <link inserted by workflow>
+
+```delivered_items_jsonl
+{"date_delivered":"2026-09-10","type":"paper","title":"World-Time Compute with Verified Code World Models","authors_or_org":"James Schwoebel, Ingrida Semenec, Jenia Rousseva, Marcos Ortiz, Collin Overbay, Christopher Klaus, Anderson Edmond, Manish Bhatt, Rome Thorstenson, Jessica Tsai, Martin G. Frasch","url":"https://arxiv.org/abs/2609.09163","memory":"Top 5 paper. Covered Sep 10 2026 arXiv paper on training LMs with trajectories from executable, verified symbolic code world models; world-time compute, label-exactness controls, OpenWorld framework, gains strongest for smaller models. Suppress arXiv/code/project/venue reposts unless scope expands beyond symbolic worlds or results materially change."}
+{"date_delivered":"2026-09-10","type":"paper","title":"When Does Low-Bit Quantization Preserve the Decisions of Vector Search?","authors_or_org":"Wenxuan Xiao, Xu Cao","url":"https://arxiv.org/abs/2609.09854","memory":"Top 5 paper and cs.DB item. Covered decision-preservation theory for quantized vector search: comparison-flip bounds, exact margins, residual tails, Vamana replay coupling, coordinate binary codes, RaBitQ, Lucene BBQ, product quantizers. Suppress future arXiv/venue/code repeats unless theory or empirical scope materially changes."}
+{"date_delivered":"2026-09-10","type":"paper","title":"A Dominant Diffuse Phase in the Sparse Autoencoder Phase Diagram","authors_or_org":"Alexis D. Plascencia","url":"https://arxiv.org/abs/2609.10299","memory":"Top 5 paper. Covered Sep 10 2026 arXiv SAE phase-diagram paper showing trained SAEs on MAIS-O43 protocol converge to diffuse phase with good reconstruction but poor true-feature recovery and dense codes, not expected recovery/merge phases. Suppress arXiv/code/social/venue versions unless experiments or conclusions materially expand."}
+{"date_delivered":"2026-09-10","type":"paper","title":"What Fixed-Rollout pass@k Evaluations Can Identify","authors_or_org":"Pranav Singh, Prashant Singh","url":"https://arxiv.org/abs/2609.09245","memory":"Top 5 paper. Covered Sep 10 2026 arXiv stat.ML paper proving fixed-n rollout success counts identify only n moments of latent per-task success distribution; pass@k beyond n, tail exponents, and tail constants are not nonparametrically identified. Suppress future arXiv/code/venue/social repeats unless statistical framework materially changes."}
+{"date_delivered":"2026-09-10","type":"paper","title":"Optimal Value Inference for Reinforcement Learning","authors_or_org":"Nan Lu, Ethan Lee, James M. Robins, David Simchi-Levi, Junwei Lu","url":"https://arxiv.org/abs/2609.09981","memory":"Top 5 paper. Covered Sep 10 2026 arXiv stat.ML paper on offline inference for optimal RL value using softmax Bellman nuisance fixed points, Neyman-orthogonal debiased estimator, asymptotic normality under diverging horizons and time-varying behavior policies, bike repositioning and AI agent tool-use examples. Suppress future versions unless theory or applications materially expand."}
+{"date_delivered":"2026-09-10","type":"proceedings","title":"arXiv cs.LG/stat.ML/cs.DB new-submission stream for September 10 2026","authors_or_org":"arXiv cs.LG, stat.ML, cs.DB","url":"https://arxiv.org/list/cs.LG/new","memory":"Venue Watch. Covered Sep 10 2026 streams: cs.LG 79 new submissions out of 252 total, stat.ML 15 new out of 42, cs.DB 3 new out of 6; themes in verified synthetic worlds, pass@k identifiability, vector-search quantization, SAE/circuit dynamics, Muon optimization, tabular feature transformation, and database/agent correctness. Suppress repeat daily stream summary."}
+{"date_delivered":"2026-09-10","type":"proceedings","title":"TMLR September 2026 accepted papers incremental update as of September 10","authors_or_org":"Transactions on Machine Learning Research","url":"https://jmlr.org/tmlr/papers/","memory":"Venue Watch. Covered new visible Sep 10 top-of-page additions beyond Sep 9 snapshot: Identifying Invariant Physical Dynamics Across Multiple Environments; Approaching the Harm of Gradient Attacks While Only Flipping Labels. Suppress repeat Sep 10 incremental snapshot."}
+{"date_delivered":"2026-09-10","type":"proceedings","title":"Proceedings of Workshops at VLDB 2026 / VLDBW 2026","authors_or_org":"VLDB 2026 Workshop Chairs and Proceedings Chairs","url":"https://www.vldb.org/2026/Workshops/vldb.html","memory":"Venue Watch. Covered newly visible bounded VLDB 2026 workshop proceedings release across ADMS, AIDB, NOVAS, QDB, Agents+Graphs, BioDMS, CDMS, DASHSys, ADS/DATAI, QCDKM, TaDA, SCCP, and PhD workshops; highlighted tabular data analysis, data agents, semantic query processing, vector/search/data-management systems. Suppress broad proceedings summary; future runs may cover individual papers only if selected or materially updated."}
+{"date_delivered":"2026-09-10","type":"paper","title":"Tensor Network Moral Graph Recovery of Discrete Probability Distributions","authors_or_org":"Á. Troyano Olivas, Chi-Hang Fred Fung, Hans H. Brunner, Momtchil Peev, Vicente Martin","url":"https://arxiv.org/abs/2609.09258","memory":"Worth Watching. Covered tensor-network method for recovering moral graph of a causal DAG from discrete probability distributions using nuclear-norm-regularized bond corrections and FCTNs, with faithfulness/positivity/no-rerouting assumptions and approximate bounds. Suppress future arXiv/code/venue repeats unless method or evidence materially expands."}
+{"date_delivered":"2026-09-10","type":"paper","title":"Hierarchical and Permutation-Invariant Feature Transformation Learning via Policy-Guided Embedding Search","authors_or_org":"Rui Liu, Tao Zhe, Yanyong Huang, Sankha Narayan Guria, Xiao Luo, Wei Fan, Yanjie Fu, Dongjie Wang","url":"https://arxiv.org/abs/2609.10225","memory":"Worth Watching. Covered CIKM 2026 paper on tabular feature transformation search using hierarchy-aware, permutation-invariant embeddings and policy-guided multi-objective RL over predictive accuracy and transformation efficiency. Suppress arXiv/code/CIKM/repost mentions unless benchmark or method materially changes."}
+{"date_delivered":"2026-09-10","type":"paper","title":"CAST: Canonical Approximate Schur Tree for Approximate Cholesky on Graphs","authors_or_org":"Meher Chaitanya, Cameron Musco, Aristides Gionis","url":"https://arxiv.org/abs/2609.09255","memory":"Worth Watching. Covered approximate Cholesky preconditioner for graph/SDDM systems replacing dense Schur-complement cliques with unbiased random spanning-tree updates and CAST-rho second-moment control. Suppress future arXiv/code/venue repeats unless solver theory or empirical scope materially changes."}
+{"date_delivered":"2026-09-10","type":"paper","title":"Few Rows Tell Them Apart: Equivalence of Queries Mixing Set and Bag Semantics","authors_or_org":"Sara Cohen","url":"https://arxiv.org/abs/2609.09978","memory":"Worth Watching and cs.DB item. Covered theory for bounded SQL equivalence checking under mixed set/bag semantics; computable tuple bounds for conjunctive queries, keys, acyclic foreign keys, comparisons, and terminating complete bounded search. Suppress arXiv/venue/repost mentions unless theory or tool support materially expands."}
+{"date_delivered":"2026-09-10","type":"benchmark","title":"MetroLLM-Bench: Evaluating Language Models as Transit Kiosk Runtimes","authors_or_org":"Remco Hendriks","url":"https://arxiv.org/abs/2609.10016","memory":"Worth Watching benchmark. Covered 955-case benchmark for LMs as policy layer of transit kiosks with structured tool calls, terminal-state scoring, six metro systems, released harness and fine-tuned students. Suppress future arXiv/repo/dataset/model-card repeats unless benchmark or results materially expand."}
+```

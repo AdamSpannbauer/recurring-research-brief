@@ -1,0 +1,104 @@
+## Section 1: Top 5 Papers
+
+1. **SIRNET: Causal Adaptation of Pretrained Embeddings for Semiparametric Treatment-Effect Estimation Under Surrogacy**  
+   **Authors:** Lei Shi, Qiuran Lyu  
+   **Venue/source:** arXiv cs.LG/stat.ME new listing  
+   **Release date:** October 14, 2026  
+   **Link:** arXiv entry. ([arxiv.org](https://arxiv.org/list/cs.LG/new))  
+   **Summary:** SIRNET attacks a timely causal-estimation problem: experiments increasingly observe rich post-treatment surrogates—MRI, text, image, video—before the delayed endpoint of interest is available. Generic pretrained embeddings may encode useful surrogate information, but not necessarily the nuisance structure needed for efficient causal estimation. SIRNET adapts embeddings jointly for outcome prediction, treatment propensity, and arm-specific surrogate marginalization, then plugs them into cross-fitted orthogonal scores. The paper claims semiparametric efficiency under nuisance-rate conditions and validates on synthetic/semi-synthetic setups plus the A4 Alzheimer’s trial using frozen MRI embeddings.  
+   **Why you should care:** This is a clean bridge between foundation-model representations and semiparametric causal inference, with the right emphasis on orthogonality rather than just predictive surrogate accuracy.
+
+2. **Causal Discovery Under Hard Selection Bias: A New Robust Score-Matching Approach**  
+   **Authors:** Yiwen Qiu, Francesco Montagna, Shimeng Huang, Francesco Locatello  
+   **Venue/source:** arXiv; comments indicate NeurIPS 2026  
+   **Release date:** October 14, 2026 arXiv listing  
+   **Link:** arXiv entry. ([arxiv.org](https://arxiv.org/list/cs.LG/new))  
+   **Summary:** This paper tackles observational causal discovery when data are deterministically truncated by selection, a setting where standard assumptions quietly fail. The key observation is elegant: under additive noise models, deterministic truncation preserves the joint score function and its Jacobian in a way that can be exploited, even though off-the-shelf score-matching causal-discovery methods still fail. The authors build a robust score-matching method that is agnostic to the selection mechanism and reportedly recovers causal structure comparably to state-of-the-art methods when selection is absent.  
+   **Why you should care:** It gives a rare positive result for causal discovery under hard sample-selection bias, using score geometry rather than external selection annotations.
+
+3. **Foundation Models for Event Prediction Across Heterogeneous Event Logs**  
+   **Authors:** Fabian Spaeh, Sean Jaffe, Shandian Zhe, Bin Shen  
+   **Venue/source:** arXiv cs.LG/cs.AI new listing  
+   **Release date:** October 14, 2026  
+   **Link:** arXiv entry. ([arxiv.org](https://arxiv.org/list/cs.LG/new))  
+   **Summary:** The paper introduces Foundation Event Predictor, an in-context architecture for next-event prediction over heterogeneous event logs from workflows, manufacturing, healthcare, and operational systems. The model performs learned nonparametric inference: causal self-attention encodes context and target histories, while cross-attention aggregates observed next-event outcomes over context transitions. The design uses permutation-robust event embeddings, random fixed embeddings to avoid overfitting persistent event IDs, and robust temporal normalization. Pretraining spans 696 real event datasets, with evaluation on 50 held-out datasets.  
+   **Why you should care:** Event logs are a structured-data modality adjacent to time series and relational histories; this is a serious attempt to make PFN-style in-context prediction work across heterogeneous operational schemas.
+
+4. **What a Data Release Must Preserve for Off-Policy Evaluation**  
+   **Authors:** Kyungbok Lee, Yating Zou, Michael R. Kosorok  
+   **Venue/source:** arXiv stat.ML/cs.LG new listing  
+   **Release date:** October 14, 2026  
+   **Link:** arXiv entry. ([arxiv.org](https://arxiv.org/list/stat.ML/new))  
+   **Summary:** This paper asks a deceptively practical question: when publishing or coarsening logged decision data, what distinctions must be preserved so that a downstream off-policy evaluation target remains identifiable? The authors characterize exact identification in terms of action-specific evaluation weights being constant within each released record, derive sharp-width consequences when histories are merged too aggressively, and give a finite-data repair algorithm with a two-approximation guarantee for reducing evaluation-weight radius. A KuaiRec study reports a 93% median reduction in mean pairwise sharp width after repair.  
+   **Why you should care:** It turns data-release design into a statistical identifiability problem, directly relevant to reusable logged datasets, privacy-preserving releases, and benchmark construction for decision systems.
+
+5. **Screening Collapse under Recursive Synthetic Data**  
+   **Authors:** Jia Zhang, Xin Chen  
+   **Venue/source:** arXiv stat.ML/cs.LG new listing  
+   **Release date:** October 14, 2026  
+   **Link:** arXiv entry. ([arxiv.org](https://arxiv.org/list/stat.ML/new))  
+   **Summary:** Rather than studying only final-model degradation under recursive synthetic data, this paper analyzes the preprocessing stage where variables are screened before modeling. When each generation labels data for the next, marginal screeners rank variables relative to drifting pseudo-label targets; over generations, active-inactive score margins can erode or reverse, causing true variables to be discarded. The authors formalize “screening collapse” in Gaussian linear models, provide finite-sample bounds and minimax impossibility results, and discuss real-label retention and data accumulation as partial mitigations.  
+   **Why you should care:** It identifies a new failure mode for synthetic-data pipelines: synthetic recursion can damage feature-selection and scientific-discovery stages before downstream predictors visibly collapse.
+
+## Section 2: Venue Watch
+
+- **arXiv daily stream, October 14, 2026.** The cs.LG page shows 502 new submissions out of 1,344 total entries, while stat.ML lists 51 new submissions and cs.DB lists 10 new database submissions. The strongest clusters for Adam’s interests are causal representation/estimation, structured event-log foundation models, recursive synthetic-data theory, semantic-query certification, vector-search freshness, and database-agent/MLE-agent infrastructure. The notable signal is not just volume: multiple papers now treat “structured data + LLM/foundation model” systems as objects needing statistical certificates, not just engineering acceleration. ([arxiv.org](https://arxiv.org/list/cs.LG/new))
+
+- **TMLR October 2026 accepted-paper stream, October 14 snapshot.** New visible items include *On the modality gap and the contrastive loss in multi-modal representation learning*, *Offline Contextual Bandits in the Presence of New Actions* with J2C certification, sparse covariance supervised PCA, *Information-Directed Sampling for Causal Bandits*, *Concept Attractors in LLMs and their Applications* with J2C certification, and *Structuring Relations Among Learning Paradigms via Protocol–Objective–Resource Reductions*. The batch has shifted from last week’s agent/reasoning emphasis toward representation geometry, causal/bandit learning, and formal comparisons among learning paradigms. ([jmlr.org](https://jmlr.org/tmlr/papers/))
+
+- **NeurIPS 2026 logistics and public-communication update.** The NeurIPS site now states that paper locations have been assigned and authors can register, while the October 12 blog post says accepted-paper authors are being asked to write lay summaries for nontechnical audiences. This is not a stable accepted-paper list yet, but it is a useful program-state marker: the conference is moving from acceptance/assignment into public-facing presentation preparation. ([nips.cc](https://nips.cc/Conferences/2026?utm_source=openai))
+
+- **JMLR Volume 27 status.** No new post-205 JMLR articles were visible in the current crawl; the latest tail remains through *A Library for Learning Neural Operators*, already covered in earlier briefs. This is recorded only to avoid repeatedly chasing a no-change JMLR tail. ([jmlr.org](https://www.jmlr.org/papers/v27/))
+
+## Section 3: Emerging Trends
+
+- **Representation learning is being pulled into causal estimands.** SIRNET and the selection-bias causal-discovery paper both avoid “embedding as feature” naivety: the former adapts embeddings for orthogonal nuisance estimation; the latter exploits invariances of the score under truncation. The theme is causal structure shaping the representation objective, not merely post-hoc adjustment.
+
+- **Structured-data foundation models are expanding beyond tables.** Event logs, matrices, relational databases, PDE fields, glucose traces, and clinical EHR traces are now all receiving PFN/ICL/foundation-model treatments. The key design question is increasingly “what is the exchangeable unit?”—row, event transition, matrix cell, relation, trajectory, or regime.
+
+- **Semantic query systems are converging on certificates.** Recent semantic-SQL and LLM-operator work is no longer satisfied with cost savings. Papers such as SemReuse, Semantic Views, and run-to-run variance studies are pushing finite-population audits, recall/precision guarantees, and variance reporting as first-class database-system outputs.
+
+- **Synthetic-data risks are moving upstream.** Screening collapse, model collapse, semantic-prior tabular diffusion, and recursive synthetic-data training show that failure can occur in variable selection, data curation, or pretraining priors before predictive accuracy visibly degrades.
+
+- **Benchmark design is becoming intervention-aware.** CellChain, GF-Bench, AmbiTab, TabReliBench, ArrivalBench, and related recent artifacts increasingly vary evidence, execution time, failure modes, or ambiguity while holding surface tasks fixed. This is a healthier benchmark pattern than simply adding more tasks.
+
+## Section 4: Worth Watching
+
+- **SemReuse: Certified Reuse of Cached Natural-Language Views for Semantic Operators** — a database system for reusing previous semantic-filter results while auditing rewritten results with finite-population recall/precision guarantees. This is closely aligned with the emerging “semantic operators need statistical contracts” agenda. ([arxiv.org](https://arxiv.org/list/cs.DB/new))
+
+- **Recall-Bounded Staleness for Filtered Multi-Tenant ANN Graph Indexes under Concurrent Updates** — gives a theory and mechanisms for bounding recall loss in continuously updated, tenant-filtered ANN graph indexes. Worth tracking because vector-search systems are finally treating update staleness and filtered navigability as quantifiable reliability objects. ([arxiv.org](https://arxiv.org/list/cs.DB/new))
+
+- **CellChain: Benchmarking Cross-Scale Evidence Use for Perturbation Reasoning** — 590 biological cases and 2,360 matched evidence-condition instances over gene dependency, cytokine-axis identification, and drug-sensitivity ranking, with a provenance-aware evidence graph. Useful for structured scientific reasoning and evidence-ablation benchmark design. ([arxiv.org](https://arxiv.org/list/cs.DB/new))
+
+- **GF-Bench: When Log Parsing Removes What Matters** — a PyTorch-based distributed GPU failure benchmark showing that parsed logs can discard precisely the context needed for failure detection, while raw-log prompting recovers performance at much higher cost. This is relevant to ML systems observability and data-reduction audits. ([arxiv.org](https://arxiv.org/list/cs.LG/new))
+
+- **Minimum-Volume Optimal Transport for Multivariate Conformal Prediction** — learns Mahalanobis OT ground costs to reduce multivariate conformal prediction-set volume while preserving finite-sample marginal coverage, with a covariate-dependent extension targeting heterogeneous conditional geometry. ([arxiv.org](https://arxiv.org/list/stat.ML/new))
+
+## Section 5: Discord Highlights
+
+**Oct. 14, 2026 research brief**
+
+Top 5:
+1. **SIRNET: Causal Adaptation of Pretrained Embeddings for Semiparametric Treatment-Effect Estimation Under Surrogacy** — orthogonal causal estimation using adapted pretrained surrogate embeddings.
+2. **Causal Discovery Under Hard Selection Bias** — score-matching route to causal discovery under deterministic truncation.
+3. **Foundation Models for Event Prediction Across Heterogeneous Event Logs** — in-context nonparametric event prediction pretrained on hundreds of real event-log datasets.
+4. **What a Data Release Must Preserve for Off-Policy Evaluation** — identifiability-preserving coarsening/repair rules for logged decision data.
+5. **Screening Collapse under Recursive Synthetic Data** — synthetic recursion can break variable screening before final-model collapse appears.
+
+Full brief: <link inserted by workflow>
+
+```delivered_items_jsonl
+{"date_delivered":"2026-10-14","type":"paper","title":"SIRNET: Causal Adaptation of Pretrained Embeddings for Semiparametric Treatment-Effect Estimation Under Surrogacy","authors_or_org":"Lei Shi, Qiuran Lyu","url":"https://arxiv.org/abs/2610.14011","memory":"Top 5 paper. Covered Oct 14 2026 arXiv cs.LG/stat.ME paper on adapting pretrained embeddings of unstructured post-treatment surrogates for semiparametric treatment-effect estimation via shared nuisance adapters and cross-fitted orthogonal scores. Suppress future arXiv/code/venue reposts unless theory, A4 application, or embedding-adaptation framework materially changes."}
+{"date_delivered":"2026-10-14","type":"paper","title":"Causal Discovery Under Hard Selection Bias: A New Robust Score-Matching Approach","authors_or_org":"Yiwen Qiu, Francesco Montagna, Shimeng Huang, Francesco Locatello","url":"https://arxiv.org/abs/2610.18075","memory":"Top 5 paper. Covered NeurIPS 2026 arXiv paper on causal discovery under deterministic truncation / hard selection bias, exploiting preservation of score and score Jacobian in additive noise models. Suppress arXiv/NeurIPS/code/social reposts unless method or assumptions materially change."}
+{"date_delivered":"2026-10-14","type":"paper","title":"Foundation Models for Event Prediction Across Heterogeneous Event Logs","authors_or_org":"Fabian Spaeh, Sean Jaffe, Shandian Zhe, Bin Shen","url":"https://arxiv.org/abs/2610.17503","memory":"Top 5 paper. Covered Foundation Event Predictor for in-context next-event prediction over heterogeneous event logs, pretrained on 696 real-world event datasets and evaluated on 50 held-out datasets. Suppress future arXiv/code/model/venue reposts unless architecture, pretraining corpus, or evidence materially expands."}
+{"date_delivered":"2026-10-14","type":"paper","title":"What a Data Release Must Preserve for Off-Policy Evaluation","authors_or_org":"Kyungbok Lee, Yating Zou, Michael R. Kosorok","url":"https://arxiv.org/abs/2610.15283","memory":"Top 5 paper. Covered characterization of which decision-history distinctions must be preserved in released/coarsened logged data for off-policy evaluation identifiability, sharp-width consequences, and finite-data repair algorithm. Suppress future arXiv/code/venue versions unless theory or applications materially change."}
+{"date_delivered":"2026-10-14","type":"paper","title":"Screening Collapse under Recursive Synthetic Data","authors_or_org":"Jia Zhang, Xin Chen","url":"https://arxiv.org/abs/2610.15617","memory":"Top 5 paper. Covered theory of variable-screening failure under recursive synthetic-data training, including target drift, score-margin erosion, finite-sample bounds, minimax impossibility, and mitigation via real-label retention or accumulation. Suppress future arXiv/code/venue reposts unless synthetic-data collapse theory materially expands."}
+{"date_delivered":"2026-10-14","type":"proceedings","title":"arXiv cs.LG/stat.ML/cs.DB new-submission stream for October 14 2026","authors_or_org":"arXiv cs.LG, stat.ML, cs.DB","url":"https://arxiv.org/list/cs.LG/new","memory":"Venue Watch. Covered Oct 14 2026 streams: 502 new cs.LG submissions out of 1344 entries, 51 new stat.ML submissions, and 10 new cs.DB submissions; themes in causal representation/estimation, structured event-log FMs, recursive synthetic-data theory, semantic-query certification, vector-search freshness, and DB/agent infrastructure. Suppress repeat daily stream summary."}
+{"date_delivered":"2026-10-14","type":"proceedings","title":"TMLR October 2026 accepted papers incremental update as of October 14","authors_or_org":"Transactions on Machine Learning Research","url":"https://jmlr.org/tmlr/papers/","memory":"Venue Watch. Covered visible Oct 14 TMLR additions/top-of-page items including modality gap and contrastive loss, offline contextual bandits with new actions J2C, sparse covariance supervised PCA, information-directed sampling for causal bandits, concept attractors in LLMs J2C, function-centric flat/sharp minima, protocol-objective-resource reductions, and sparse mechanism shift invariance testing. Suppress repeat Oct 14 TMLR snapshot."}
+{"date_delivered":"2026-10-14","type":"announcement","title":"NeurIPS 2026 paper locations assigned and lay-summary initiative","authors_or_org":"NeurIPS 2026 / NeurIPS Blog","url":"https://nips.cc/Conferences/2026","memory":"Venue Watch. Covered current NeurIPS 2026 status: conference page says paper locations have been assigned and authors can register; Oct 12 blog says accepted-paper authors are asked to write lay summaries for nontechnical audiences. Suppress repeat logistics-only announcements unless stable accepted-paper list, full program, site assignments, or awards become available."}
+{"date_delivered":"2026-10-14","type":"software","title":"SemReuse: Certified Reuse of Cached Natural-Language Views for Semantic Operators","authors_or_org":"Phat T. Tran-Truong, Tung Kieu, Xuan-Bach Le, Son X. Ha, Duc Kieu, Bin Yang, Christian S. Jensen","url":"https://arxiv.org/abs/2610.16035","memory":"Worth Watching. Covered certified reuse of cached semantic-filter/materialized-view results with pooled stratified finite-population audits for per-query recall and precision guarantees. Suppress arXiv/code/venue reposts unless certification method, system, or benchmarks materially change."}
+{"date_delivered":"2026-10-14","type":"paper","title":"Recall-Bounded Staleness for Filtered Multi-Tenant ANN Graph Indexes under Concurrent Updates","authors_or_org":"Namrata Das, Kailas Devadkar, Anand Godbole","url":"https://arxiv.org/abs/2610.15130","memory":"Worth Watching. Covered vector-search/database paper giving recall-loss decomposition and mechanisms for filtered multi-tenant graph ANN indexes under concurrent updates, including staleness ceilings and tenant-aware staging cache. Suppress future arXiv/code/venue reposts unless theory or system materially changes."}
+{"date_delivered":"2026-10-14","type":"benchmark","title":"CellChain: Benchmarking Cross-Scale Evidence Use for Perturbation Reasoning","authors_or_org":"Xue Xia, Yue Wang, Shuizhou Chen, Lang Yu, Hao Wu, Wenxuan Huang, Chengkai Yao, Zhangyang Gao, Siqi Sun","url":"https://arxiv.org/abs/2610.16346","memory":"Worth Watching benchmark. Covered experimentally grounded benchmark with 590 biological cases and 2360 evidence-condition instances over gene-dependency, cytokine-axis, and drug-sensitivity reasoning using provenance-aware evidence graph. Suppress arXiv/code/dataset reposts unless benchmark materially expands."}
+{"date_delivered":"2026-10-14","type":"benchmark","title":"GF-Bench: When Log Parsing Removes What Matters: Detecting Failures in Distributed GPU Workloads","authors_or_org":"Boyuan Cui, Yuyang Zeng, Yifang Tian, Hans-Arno Jacobsen","url":"https://arxiv.org/abs/2610.14009","memory":"Worth Watching benchmark. Covered PyTorch distributed-GPU failure benchmark with 220 labeled two-GPU executions, showing parsed logs can lose failure context while raw-log prompting improves detection at higher token/cost burden. Suppress arXiv/code/dataset reposts unless benchmark or analysis materially expands."}
+{"date_delivered":"2026-10-14","type":"paper","title":"Minimum Volume Optimal Transport for Multivariate Conformal Prediction","authors_or_org":"Chuchen Zhang, Haojie Ren, Zhaojun Wang, Yajie Bao, Changliang Zou","url":"https://arxiv.org/abs/2610.14907","memory":"Worth Watching. Covered OT-based multivariate conformal prediction method learning Mahalanobis ground costs to minimize prediction-set volume while preserving finite-sample marginal coverage, with individualized covariate-dependent extension. Suppress arXiv/code/venue repeats unless conformal/OT theory or applications materially change."}
+```

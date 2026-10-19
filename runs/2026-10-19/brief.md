@@ -1,0 +1,104 @@
+## Section 1: Top 5 Papers
+
+1. **Unit-level aggregation breaks coverage in causal foundation models**  
+   **Authors:** Gabe Schulman, Lucius E. J. Bynum, Yoav Wald  
+   **Venue/source:** arXiv stat.ML/cs.LG  
+   **Release date:** October 16, 2026  
+   **Link:** ([arxiv.org](https://arxiv.org/abs/2610.22770))  
+   This is the most directly important paper this cycle for causal foundation models. The authors show that CFM uncertainty can look plausible at the unit level but fail badly when users average effects over groups—the actual object of most policy decisions. Their diagnosis is sharp: models such as CausalPFN emit per-unit predictive distributions, then aggregate variances as if unit errors were independent, ignoring posterior uncertainty over the shared data-generating process. The result is undercoverage that worsens with group size; on ACIC 2016, full-sample average intervals reportedly cover only 20% of datasets. Neural-process-style group predictors partly repair this.  
+   **Why you should care:** It exposes a structural reliability failure in causal PFNs exactly where treatment-effect estimates become decision-relevant.
+
+2. **Escaping Parameter Space: Tight Generalization Bounds via Representation Quality**  
+   **Authors:** Niclas Göring, Shuofeng Zhang, Branton DeMoss, Ard A. Louis  
+   **Venue/source:** arXiv cs.LG  
+   **Release date:** October 16, 2026  
+   **Link:** ([arxiv.org](https://arxiv.org/abs/2610.23729))  
+   This paper proposes a generalization certificate based on the geometry of last-hidden-layer representations rather than parameter-space complexity, PAC-Bayes KLs, norms, or compression. The bound decomposes into k-NN decoder error, decoder-network agreement, and training stability, making it both a certificate and a diagnostic. The headline empirical claim is unusually strong for generalization-bound work: an 8-point gap to ResNet-18 CIFAR-10 test error, nonvacuous CIFAR-100 certificates, and tight certification for frozen DINOv2 representations. The causal perturbation analysis—destroying local class geometry while preserving memorization—is especially relevant to representation learning.  
+   **Why you should care:** It shifts generalization analysis toward representation quality in a way that could become operationally useful.
+
+3. **Waiting Buys Exactly Two Moments: Endogenous Identification in Prediction-Driven Allocation**  
+   **Authors:** Rama AlHamidi, Rasul Khanbayov, Erchin Serpedin, Hasan Kurban  
+   **Venue/source:** arXiv cs.LG  
+   **Release date:** October 16, 2026  
+   **Link:** ([arxiv.org](https://arxiv.org/abs/2610.23830))  
+   This is a crisp identification paper for prediction-driven intervention timing. In a preventive-allocation setting with repeated noisy signals and risk-dependent attrition, each extra observation period identifies exactly two additional latent risk moments. That sounds useful, but the paper’s punchline is negative: those moments identify survivor attrition, not necessarily allocation welfare or the consequences for prioritized units. The authors give observationally equivalent constructions showing unavoidable timing regret at any fixed observation length, plus certificates for when all compatible populations agree on the optimal intervention date. It is a good formal antidote to “wait for more signal” instincts.  
+   **Why you should care:** It makes the statistical cost of delayed decisions explicit in sequential targeting systems.
+
+4. **A general recipe for data-adaptive anytime-valid envelopes for iterative algorithms**  
+   **Authors:** Soham Bonnerjee, Aaditya Ramdas  
+   **Venue/source:** arXiv stat.ML/cs.LG  
+   **Release date:** October 16, 2026  
+   **Link:** ([arxiv.org](https://arxiv.org/abs/2610.23570))  
+   This 83-page paper abstracts anytime-valid stopping guarantees for iterative stochastic algorithms. Many convergence bounds only justify fixed iteration counts; practical systems stop adaptively. The authors show that for a broad family of algorithms, the analysis can be reduced to a one-step recursion plus time-uniform concentration for predictably weighted noise. Their “strongly adapted sub-ψ” condition supports mixture, stitching, and product-betting-martingale boundaries, and the paper instantiates the recipe for SGD, temporal-difference learning, and Bures-Wasserstein SGD. The point is not one new optimizer but a reusable proof template for data-dependent stopping.  
+   **Why you should care:** It could become a standard statistical wrapper for adaptive training, optimization, and simulation loops.
+
+5. **PrairieFire: Igniting High-Throughput Updates in Large-Scale Approximate Nearest Neighbor Search**  
+   **Authors:** Yuchen Huang, Baiteng Ma, Yiping Sun, Xiao Chen, Rui Ma, Yue Chen, Jinwei Zhang, Xiaocheng Zhong, Zhiyong Wang, Yao Hu, Erci Xu, Chuliang Weng  
+   **Venue/source:** arXiv cs.DB  
+   **Release date:** October 16, 2026  
+   **Link:** ([arxiv.org](https://arxiv.org/abs/2610.23232))  
+   PrairieFire targets a practical bottleneck in SSD-resident billion-scale vector search: dynamic freshness. Existing disk-based ANNS systems can search cheaply but update slowly, which is increasingly problematic when embeddings, corpora, and RAG indexes change continuously. PrairieFire combines buffered updates, batched local rebuilds, cascaded adjustments, concurrency control, and CPU-GPU-SSD co-design to avoid foreground SSD churn and expensive background reassignment. The reported gains are large—3–35× update throughput, 3–5× concurrent search throughput, and 1.5–8.7× cost efficiency—and the system has a two-month production deployment at RedNote.  
+   **Why you should care:** Freshness is becoming as important as recall/latency for retrieval systems; this is a serious systems answer.
+
+## Section 2: Venue Watch
+
+**arXiv cs.LG/stat.ML/cs.DB, October 19 snapshot.** The Monday stream is large again: cs.LG lists 222 new entries, stat.ML lists 31, and cs.DB lists 11. The strongest clusters are causal/policy timing, representation-level generalization certificates, agent memory/tooling, discrete diffusion and information estimation, online testing, vector-index freshness, semantic/SQL query correctness, and production-scale ANN maintenance. This snapshot is not worth reading exhaustively, but it confirms that structured-data infrastructure, agentic systems, and reliability/statistical calibration are now tightly interleaved rather than separate literatures. ([arxiv.org](https://arxiv.org/list/cs.LG/recent))
+
+**TMLR October 2026 accepted-paper stream.** The visible October page has shifted from early-month reasoning/reliability papers into sequential testing, fairness, transductive node classification, video diffusion acceleration, hyperspherical language modeling, and zero-shot RL. Notable newly visible items include *Optimized Sequential Testing for Binary Ensemble Classifiers*, *Individual Fairness via Local Predictive Consistency*, *Do Not Imitate, Reinforce: Iterative Classification via Belief Refinement*, *Language Modeling with Hyperspherical Flows*, and *A Unified Framework for Zero-Shot Reinforcement Learning*. ([jmlr.org](https://jmlr.org/tmlr/papers/))
+
+**NeurIPS 2026 program surface is becoming crawlable, but still noisy.** The official downloads page now exposes thousands of events/titles and makes the field-level texture visible: dense clusters around agents, audits, provenance, graph/structured-data learning, long-context memory, data readiness, stochastic dynamics, and biomedical/scientific foundation models. Treat it as a program index, not yet a clean accepted-paper proceeding. ([neurips.cc](https://neurips.cc/Downloads/2026?utm_source=openai))
+
+**INFORMS Journal on Computing, Volume 38 Issue 5, September–October 2026.** The current IJOC issue is now posted. Its themes are broad computational OR: integer-program value functions, active-learning community search, personalized federated learning, ML-guided global optimization for nonconvex QCQPs, crowdsourcing truth inference, robust/quadratic optimization, low-rank SDP, clinical-trial recruitment, kidney exchange, learning-to-branch limitations, black-box CoVaR, and stochastic medical evacuation. This is a useful adjacent signal: learning-augmented optimization is now routine in IJOC, but the issue remains methodologically anchored in exact algorithms, decomposition, stability, and operational structure. ([pubsonline.informs.org](https://pubsonline.informs.org/toc/ijoc/current))
+
+## Section 3: Emerging Trends
+
+- **Reliability is moving from per-instance to aggregate and workflow-level guarantees.** The causal-FM coverage paper, semantic-query variance papers from last week, and new sequential-testing work all stress that “good local predictions” do not imply reliable aggregate decisions.
+
+- **Representation geometry is becoming a measurable object, not a metaphor.** Generalization certificates via k-NN geometry, critiques of linear probes, Fisher/output geometry work, and SAE phase analyses point toward representation diagnostics that are falsifiable and intervention-linked.
+
+- **Freshness and dynamic updates are now first-class retrieval-system metrics.** PrairieFire, time-decayed vector search, stale ANN recall bounds, semantic-view reuse, and vector-cache studies all indicate that static Recall@K benchmarks are no longer sufficient.
+
+- **Causal foundation models are entering their audit phase.** The newest work is less about beating baselines and more about what estimands, coverage objects, aggregation levels, and data-release distinctions they actually support.
+
+- **Data/agent systems are converging with database correctness.** SQL equivalence refutation, semantic query certification, agent tool recommendation, workflow contracts, and provenance systems suggest that “agentic data analysis” is being absorbed into database-style semantics and testing.
+
+## Section 4: Worth Watching
+
+- **Is a Linear Probe Evidence of a Linear Representation?** NeurIPS 2026 paper arguing that high linear-probe accuracy can arise from either a true low-dimensional linear world model or a rich kernel-like embedding; proposes reverse predictivity, spectral concentration, and OOD diagnostics. ([arxiv.org](https://arxiv.org/abs/2610.22655))
+
+- **SQLWitness / Efficient Dialect-Agnostic SQL Equivalence Refutation.** A DBMS-agnostic counterexample generator for SQL equivalence that uses execution engines as semantic oracles and reports 2.1–16.4× speedups over baselines. ([arxiv.org](https://arxiv.org/abs/2610.22442))
+
+- **Tool Recommendation for Multi-Step Agents.** A deployed gateway system for exposing thousands of tools through a fixed interface while respecting user credentials and consent; reports 93% first-recommendation coverage in paired Codex workflows. ([arxiv.org](https://arxiv.org/abs/2610.23707))
+
+- **Joining Large String Collections with Jaro-Winkler Similarity.** SIGMOD/PACMMOD 2027 paper with a linear-time bounded-alphabet Jaro-Winkler computation, adaptive bitmap filters, and prefix grouping; highly relevant to entity resolution and record linkage. ([arxiv.org](https://arxiv.org/abs/2610.23652))
+
+- **ENFR: Evidence Networks with Flow-Matched References.** Amortized absolute-evidence estimation for simulation-based model inference and model-checking, with scientific applications and a multi-model evidence-learning architecture. ([arxiv.org](https://arxiv.org/abs/2610.23825))
+
+## Section 5: Discord Highlights
+
+**Oct 19 brief — Top 5 papers**
+
+1. **Unit-level aggregation breaks coverage in causal foundation models** — CFM intervals can fail badly when unit effects are averaged for policy decisions.  
+2. **Escaping Parameter Space** — representation-quality certificates give unusually tight generalization bounds.  
+3. **Waiting Buys Exactly Two Moments** — formalizes when waiting for more signal helps or harms prediction-driven allocation.  
+4. **Anytime-valid envelopes for iterative algorithms** — reusable martingale recipe for adaptive stopping in stochastic optimization.  
+5. **PrairieFire** — production-scale SSD vector search with high-throughput dynamic updates.
+
+Full brief: <link inserted by workflow>
+
+```delivered_items_jsonl
+{"date_delivered":"2026-10-19","type":"paper","title":"Unit-level aggregation breaks coverage in causal foundation models","authors_or_org":"Gabe Schulman, Lucius E. J. Bynum, Yoav Wald","url":"https://arxiv.org/abs/2610.22770","memory":"Top 5 paper. Covered Oct 16 2026 arXiv paper showing unit-level CFM uncertainty aggregation undercovers group treatment effects because unit errors are correlated through posterior uncertainty over the DGP; CausalPFN ACIC example and neural-process repair. Suppress arXiv/code/venue/social reposts unless aggregation-coverage framework or benchmarks materially expand."}
+{"date_delivered":"2026-10-19","type":"paper","title":"Escaping Parameter Space: Tight Generalization Bounds via Representation Quality","authors_or_org":"Niclas Göring, Shuofeng Zhang, Branton DeMoss, Ard A. Louis","url":"https://arxiv.org/abs/2610.23729","memory":"Top 5 paper. Covered representation-quality generalization certificate using last-hidden-layer k-NN geometry, decoder agreement, and training stability; reported tight CIFAR/DINOv2 certificates and causal perturbation of local class geometry. Suppress future arXiv/code/venue reposts unless bound, diagnostics, or evidence materially change."}
+{"date_delivered":"2026-10-19","type":"paper","title":"Waiting Buys Exactly Two Moments: Endogenous Identification in Prediction-Driven Allocation","authors_or_org":"Rama AlHamidi, Rasul Khanbayov, Erchin Serpedin, Hasan Kurban","url":"https://arxiv.org/abs/2610.23830","memory":"Top 5 paper. Covered Oct 16 2026 arXiv identification result that a tau-length observation prefix identifies exactly 2tau latent-risk moments under prediction-driven allocation with attrition, but may not identify allocation welfare; includes timing-regret certificates. Suppress future versions unless theory or experiments materially expand."}
+{"date_delivered":"2026-10-19","type":"paper","title":"A general recipe for data-adaptive anytime-valid envelopes for iterative algorithms","authors_or_org":"Soham Bonnerjee, Aaditya Ramdas","url":"https://arxiv.org/abs/2610.23570","memory":"Top 5 paper. Covered general martingale/time-uniform recipe for data-adaptive anytime-valid stopping envelopes for iterative stochastic algorithms, including SGD, TD learning, and Bures-Wasserstein SGD. Suppress arXiv/code/venue reposts unless boundary constructions or applications materially change."}
+{"date_delivered":"2026-10-19","type":"paper","title":"PrairieFire: Igniting High-Throughput Updates in Large-Scale Approximate Nearest Neighbor Search","authors_or_org":"Yuchen Huang, Baiteng Ma, Yiping Sun, Xiao Chen, Rui Ma, Yue Chen, Jinwei Zhang, Xiaocheng Zhong, Zhiyong Wang, Yao Hu, Erci Xu, Chuliang Weng","url":"https://arxiv.org/abs/2610.23232","memory":"Top 5 paper and cs.DB item. Covered SSD-resident dynamic ANNS system using buffered updates, batched local rebuilds, cascaded adjustments, concurrency control, CPU-GPU-SSD cooperation, and RedNote production deployment. Suppress future arXiv/code/venue reposts unless system or production evidence materially changes."}
+{"date_delivered":"2026-10-19","type":"proceedings","title":"arXiv cs.LG/stat.ML/cs.DB recent stream snapshot for October 19 2026","authors_or_org":"arXiv cs.LG, stat.ML, cs.DB","url":"https://arxiv.org/list/cs.LG/recent","memory":"Venue Watch. Covered Oct 19 2026 streams: cs.LG 222 new entries, stat.ML 31, cs.DB 11; themes in causal/policy timing, representation generalization, agent memory/tooling, discrete diffusion, anytime testing, vector freshness, and semantic/SQL correctness. Suppress repeat daily stream summary."}
+{"date_delivered":"2026-10-19","type":"proceedings","title":"TMLR October 2026 accepted papers incremental update as of October 19","authors_or_org":"Transactions on Machine Learning Research","url":"https://jmlr.org/tmlr/papers/","memory":"Venue Watch. Covered visible October TMLR additions including optimized sequential testing, local predictive consistency fairness, iterative classification via belief refinement, speech role-play evaluation, uncertainty-aware pseudo-labeling, synthetic video diffusion acceleration, hyperspherical flows, and zero-shot RL. Suppress repeat Oct 19 TMLR snapshot."}
+{"date_delivered":"2026-10-19","type":"announcement","title":"NeurIPS 2026 Downloads/program index visibility as of October 19","authors_or_org":"NeurIPS 2026","url":"https://neurips.cc/Downloads/2026","memory":"Venue Watch. Covered official NeurIPS 2026 Downloads page/program index now exposing thousands of event and paper/workshop titles, with visible clusters in agents, audits, provenance, graph/structured-data learning, long-context memory, stochastic dynamics, and scientific/biomedical FMs. Suppress repeat program-index visibility notes; cover stable proceedings, awards, or specific papers separately."}
+{"date_delivered":"2026-10-19","type":"venue_issue","title":"INFORMS Journal on Computing Volume 38 Issue 5 September-October 2026","authors_or_org":"INFORMS Journal on Computing","url":"https://pubsonline.informs.org/toc/ijoc/current","memory":"Venue Watch. Covered current IJOC Sep-Oct 2026 issue themes: integer-program value functions, active-learning community search, personalized federated learning, learning-guided nonconvex QCQP optimization, crowdsourcing truth inference, robust/quadratic optimization, low-rank SDP, trial recruitment, kidney exchange, learning-to-branch limitations, black-box CoVaR, stochastic medical evacuation. Suppress repeat issue summary."}
+{"date_delivered":"2026-10-19","type":"paper","title":"Is a Linear Probe Evidence of a Linear Representation?","authors_or_org":"Nadir Kutluozen, Christian Internò, David Klindt","url":"https://arxiv.org/abs/2610.22655","memory":"Worth Watching. Covered NeurIPS 2026 paper arguing linear-probe success does not imply truly linear low-dimensional representation; proposes reverse predictivity, spectral concentration, and OOD diagnostics. Suppress arXiv/NeurIPS/code reposts unless diagnostics or empirical scope materially expand."}
+{"date_delivered":"2026-10-19","type":"paper","title":"Efficient Dialect-Agnostic SQL Equivalence Refutation","authors_or_org":"Junwen An, Manuel Rigger","url":"https://arxiv.org/abs/2610.22442","memory":"Worth Watching. Covered SQLWitness DBMS-agnostic SQL equivalence refutation engine using execution engines as semantic oracles, constrained data generation, predicate coverage, and statistical termination. Suppress arXiv/code/venue reposts unless system, dialect coverage, or benchmarks materially change."}
+{"date_delivered":"2026-10-19","type":"software","title":"Tool Recommendation for Multi-Step Agents: Finding Every Tool a Task Needs","authors_or_org":"Sam Partee, River Stevens, Thierry Damiba, Valerie Fanelle","url":"https://arxiv.org/abs/2610.23707","memory":"Worth Watching. Covered deployed gateway tool-recommendation system for multi-step agents with thousands of tools, credential/consent enforcement, ToolRet benchmark, and Codex/Claude Code workflow cost reductions. Suppress future arXiv/product/venue reposts unless benchmark or deployment evidence materially changes."}
+{"date_delivered":"2026-10-19","type":"paper","title":"Joining Large String Collections with Jaro-Winkler Similarity","authors_or_org":"Manuel Lankes, Daniel Kocher, Daniel Schmitt, Willi Mann, Thomas Samy Dafir, Bin Shen, Yujian Xu, Nikolaus Augsten","url":"https://arxiv.org/abs/2610.23652","memory":"Worth Watching and SIGMOD/PACMMOD 2027 item. Covered scalable Jaro-Winkler similarity joins with JUMP linear-time bounded-alphabet algorithm, adaptive bitmap filters, PUMA prefix grouping, and up-to-three-orders-of-magnitude speedups. Suppress arXiv/PACMMOD/code reposts unless ER/string-join algorithm or benchmarks materially change."}
+{"date_delivered":"2026-10-19","type":"paper","title":"ENFR: Evidence Networks with Flow-Matched References for Amortized Simulation-Based Model Inference","authors_or_org":"Kai Lehman, Jameson Dong, Carolina Cuesta-Lazaro, Niall Jeffrey, Benjamin D. Wandelt, Francisco Villaescusa-Navarro, Sven Krippendorf, Jochen Weller","url":"https://arxiv.org/abs/2610.23825","memory":"Worth Watching. Covered amortized absolute-evidence estimation for simulation-based and likelihood-based model inference using flow-matched references, with model misspecification/goodness-of-fit motivation and scientific applications. Suppress future arXiv/code/venue reposts unless evidence-estimation method or applications materially expand."}
+```
